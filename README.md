@@ -16,7 +16,6 @@ In general, fork the project, create a branch for a specific change and send a
 pull request for that branch. Don't mix unrelated changes. You can use the commit
 message as the description for the pull request.
 
-
 For committers
 ---
 When looking at pull requests, first check for [proper commit messages](https://github.com/GlobalSign/OneClickSSL/wiki/Bug-Fixing-Guide).
