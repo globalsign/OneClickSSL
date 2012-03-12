@@ -9,7 +9,7 @@
 *
 * LICENSE: BSD License
 *
-* Copyright © 2012 GMO GlobalsSign KK.
+* Copyright Â© 2012 GMO GlobalsSign KK.
 * All Rights Reserved.
 *
 * Redistribution and use in source and binary forms, with or without
@@ -34,7 +34,7 @@
 * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @copyright  Copyright © 2012 GMO GlobalsSign KK. All Rights Reserved. (http://www.globalsign.com)
+* @copyright  Copyright Â© 2012 GMO GlobalsSign KK. All Rights Reserved. (http://www.globalsign.com)
 * @license    BSD License (3 Clause)
 * @version    $Id$
 * @link       http://www.globalsign.com/ssl/oneclickssl/
@@ -55,18 +55,32 @@ define("CONFIGNGINX", "/etc/nginx/conf.d/default.conf");
 // Read/write permissions for root only (chmod 600)
 define("CERTDIR", "/etc/ssl/oneclickssl/");
 
-// Location of status file, if enabled
-define("STATUSPATH", "/tmp/");
+require("../../lib/OneClickSSL.php");
 
+class NginxOneClick implements OneClickSSLPlugin
+{
+    protected $_output;
 
-require("oneclick.php");
+    protected $_domain;
 
-class NginxOneClick extends OneClickSSL {
+    public $backup = array();
+
+    /**
+     * Set the domain for the certificate
+     *
+     * @param string $domain  The domain for the certificate
+     *
+     * @return null
+     */
+    public function setDomain($domain)
+    {
+        $this->_domain = $domain;
+    }
 
     /**
      * Install the certificate
-     */     
-    public function doInstall($privateKey, $certificate, $cacert = '')
+     */
+    public function install($privateKey, $certificate, $cacert = null)
     {
 		$this->debug(1, "Preparing Nginx certificate installation for ". $this->_domain);
     	    			
@@ -272,14 +286,14 @@ class NginxOneClick extends OneClickSSL {
 			return false;
 		}
 		
-		// Check certificate installation
-		return $this->checkInstall($certString);
+		// Return certificate for installation check
+		return $certString;
 	}
 	
     /**
      * Back the current certificates
      */     
-    public function doBackup()
+    public function backup()
     {
 		if (@copy(CERTDIR . $this->_domain .'.*', CERTDIR .'backup/')) {
 			return true;
@@ -299,6 +313,32 @@ class NginxOneClick extends OneClickSSL {
 			return false;
 		}
 	}
+    
+    /**
+     * Set the output handler object
+     *
+     * @param Output_Output $output  Output handler object
+     *
+     * @return DAOneClick
+     */
+    public function setOutput(Output_Output $output)
+    {
+        $this->_output = $output;
+        return $this;
+    }
+    
+    /**
+     * Write a message to the debugger
+     *
+     * @param int    $level    Level of message to send to debug
+     * @param string $message  Message to send
+     *
+     * @return null
+     */
+    protected function debug($level, $message)
+    {
+        $this->_output->debug()->write($level, $message);
+    }
 }
 
 // Create certificate directory if not exists
@@ -306,23 +346,26 @@ if (!is_dir(CERTDIR .'backup')) {
 	mkdir(CERTDIR .'backup', 600, true);
 }
 
-$oneclick = new NginxOneClick();
-$oneclick->setDomain('test.paul.vanbrouwershaven.com');
-$oneclick->setVoucher('5daytrialDV');
-$oneclick->setMail('paul.vanbrouwershaven@globalsign.com');
-//$oneclick->setPort(443);
-//$oneclick->setLang('en');
-$oneclick->setTest(1);
-// Debug outputting (default: 0)
-$oneclick->setDebug(1);
+/**
+ * Initiate OneClickSSL Procedure
+ *  $domain, $email, $voucher, $port = self::DEFAULT_SSL_PORT, $lang = self::DEFAULT_LANG 
+ */
+$certData = new CertificateData('remote.paul.vanbrouwershaven.com',
+                                'paul.vanbrouwershaven@globalsign.com',
+                                '5daytrialDV');
+  
+$oneclick = OneClickSSL::init($certData, new NginxOneClick());
+
+$oneclick->output()->debug()->setLevel(1);
+
+// Run on production (0), testing (1) or staging server (2)
+//$oneclick->setEnvironment(1);
 
 // Write procgress into status file (default: 0)
-//$oneclick->setWriteStatus(1);
+//$oneclick->output()->status()->setStatusPath(realpath('/tmp/'))->setWriteStatus(true);
 
 if ($oneclick->order() < 0) {
 	echo "Order/installation error". PHP_EOL;
 } else {
 	echo "Order and installation successfully completed". PHP_EOL;
 }
-
-?>
