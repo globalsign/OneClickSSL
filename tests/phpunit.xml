@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit bootstrap="testBootstrap.php">
     <testsuite name="OneClickSSL Tests">
-        <directory suffix="Test.php">./tests/</directory>
+        <directory suffix="Test.php">./</directory>
     </testsuite>
     <filter>
         <whitelist>
-            <directory suffix=".php">./lib/</directory>
+            <directory suffix=".php">../lib/</directory>
         </whitelist>
     </filter>
 </phpunit>
