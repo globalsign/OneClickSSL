@@ -239,7 +239,7 @@ class OneClickSSL
 
         $result = $this->processWorkflow($workflow);
         if ($result) {
-            $this->status('order_done', self::STATUS_DONE);
+            $this->status('orderDone', self::STATUS_DONE);
             $this->updateStatus();
         }
 
@@ -294,7 +294,7 @@ class OneClickSSL
 
         $result = $this->processWorkflow($workflow);
         if ($result) {
-            $this->status('revoke_done', self::STATUS_DONE);
+            $this->status('revokeDone', self::STATUS_DONE);
             $this->updateStatus();
         }
 
