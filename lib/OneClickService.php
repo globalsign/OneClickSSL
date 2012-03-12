@@ -467,7 +467,7 @@ class OneClickService
     /**
      * Make the SOAP call via SoapClient to GlobalSign
      */
-    protected function doCallSoap($server, $function, $arguments)
+    protected function doCallSoap($function, $arguments)
     {
         use_soap_error_handler(true);
         ini_set("soap.wsdl_cache_enabled", "0");
