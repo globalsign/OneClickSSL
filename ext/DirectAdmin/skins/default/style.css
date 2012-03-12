@@ -1,0 +1,55 @@
+#debug {
+	display: none;
+    border: 1px dotted #666;
+    padding: 10px;
+    overflow: scroll;
+	white-space: pre-line;
+}
+#ocDoneNoErrors {
+	text-align: center;
+    display: none;
+    clear: both;
+}
+.ocContent {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+.ocStatus {
+    display: none;
+    height: 34px;
+    clear: both;
+}
+.ocSetting {
+	height: 34px;
+    clear: both;
+}
+.ocDsc {
+	display: block;
+	position: relative;
+	height: 34px;
+	float: left;
+	vertical-align: middle;
+}
+.ocImg {
+	display: block;
+	position: relative;
+	height: 34px;
+	width: 50px;
+	float: right;
+	vertical-align: middle;
+}
+.ocInput {
+	display: block;
+	position: relative;
+	height: 34px;
+	float: right;
+	width: 400px;
+	vertical-align: middle;
+	text-align: left;
+}
+.ocHighlight{
+	background: #f3f3f3;
+	border: 1px solid #ACCCB8;
+	padding: 12px 5px 15px 5px;
+	margin-bottom: 12px;
+}

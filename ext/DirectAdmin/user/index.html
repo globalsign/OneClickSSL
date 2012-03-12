@@ -1,0 +1,219 @@
+#!/usr/local/bin/php
+<?php
+/*
+* PHP version 5
+*
+* LICENSE: BSD License
+*
+* Copyright © 2012 GMO GlobalsSign KK.
+* All Rights Reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted provided that the following conditions 
+* are met:
+* 1. Redistributions of source code must retain the above copyright
+*    notice, this list of conditions and the following disclaimer.
+* 2. Redistributions in binary form must reproduce the above copyright
+*    notice, this list of conditions and the following disclaimer in the
+*    documentation and/or other materials provided with the distribution.
+* 3. The name of the author may not be used to endorse or promote products
+*    derived from this software without specific prior written permission.
+* 
+* THIS SOFTWARE IS PROVIDED BY GMO GLOBALSIGN KK "AS IS" AND ANY EXPRESS OR
+* IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+* OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+* IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, 
+* INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+* NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+* DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+* THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+* (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+* THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*
+* @copyright  Copyright © 2012 GMO GlobalsSign KK. All Rights Reserved. (http://www.globalsign.com)
+* @license    BSD License (3 Clause)
+* @version    $Id$
+* @link       http://www.globalsign.com/ssl/oneclickssl/
+*/
+
+/**
+ * Check PHP version
+ */  
+$version = explode('.', PHP_VERSION);
+if ($version[0] < 5) {
+	echo 'You are using a very old PHP version please upgrade your installation to use this plugin. Check <a href="http://help.directadmin.com/item.php?id=135">this manual</a> for mor information on how to upgrade.';
+	exit;
+}
+unset($version);
+
+/**
+ * Check for Curl
+ */  
+if (!function_exists('curl_init')) {
+	echo 'You need <a href="http://curl.haxx.se/" target="_blank">cURL</a> to use this plugin.';
+	exit;
+}
+
+/**
+ * Read plugin config file
+ */
+$config = $_ENV['DOCUMENT_ROOT'] .'/../etc/oneclick.conf';
+$settings = unserialize(file_get_contents($config));
+
+/**
+ * Check for Settings
+ */  
+if (!(strlen($settings['da_user']) > 0 && strlen($settings['da_passwd']) > 0)) {
+	echo 'You need to configure this plugin before you can use it';
+	exit;
+}
+
+/**
+ * Read user config file
+ */
+$usrConfig = $_ENV['DOCUMENT_ROOT'] .'/../etc/usr_'. $_ENV['USERNAME'] .'.conf';
+if (file_exists($usrConfig)) {
+	$usrSettings = unserialize(@file_get_contents($usrConfig));
+} else {
+	$usrSettings = array();
+}
+
+$replace = array();
+$replace['{{ voucher_url }}'] = htmlentities(strip_tags($settings['voucher_url']));
+
+parse_str($_ENV['QUERY_STRING'], $qstr);
+
+parse_str($_ENV['POST'], $_POST);
+$replace['{{ domain }}'] = htmlentities(strip_tags(trim($_POST['domain'])));
+$replace['{{ voucher }}'] = htmlentities(strip_tags(trim($_POST['voucher'])));
+$replace['{{ email }}'] = htmlentities(strip_tags(trim($_POST['email'])));
+$replace['{{ revoke }}'] = htmlentities(strip_tags(trim($_POST['revoke'])));
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($qstr['action'])) {
+    $error = false;
+
+    if (!@checkdnsrr(str_replace('*.', '', $replace['{{ domain }}']), 'ANY')) {
+        $errorMsg .= "The hostname ". str_replace('*.', '', $replace['{{ domain }}']) ." does not revolve to an ip address.<br>". PHP_EOL;
+        $error = true;
+    }
+
+    $mail = explode("@", $replace['{{ email }}'], 2);
+    if (!@checkdnsrr($mail[1], 'ANY')) {
+        $errorMsg .= "The domain '". $mail[1] ."' is not able to receive mail, can't resolve domain.<br>". PHP_EOL;
+        $error = true;
+    }
+
+    if (strlen($_POST['voucher']) < 4) {
+        $errorMsg .= "Invalid voucher, the voucher should be minimal 5 characters.<br>". PHP_EOL;
+        $error = true;
+    }
+    
+     if (!array_key_exists('subagree', $_POST)) {
+        $errorMsg .= "Please check and agree the terms and conditions<br>". PHP_EOL;
+        $error = true;
+     }
+    
+    if ($error) {
+        echo '<p><div style="color: red;">'. $errorMsg .'</div></p>'. PHP_EOL;
+    }
+
+/*
+ * User settings
+ */
+} else if ($_SERVER['REQUEST_METHOD'] == 'POST' && $qstr['action'] == 'settings') {
+	parse_str($_ENV['POST'], $_POST);
+
+	if ($_POST['remote_admin']) {
+		$usrSettings['remote_admin'] = 1;
+	} else {
+		$usrSettings['remote_admin'] = 0;
+	}
+	
+	if ($_POST['auto_ip']) {
+		$usrSettings['auto_ip'] = 1;
+	} else {
+		$usrSettings['auto_ip'] = 0;
+	}
+	
+	$usrSettings['debug_level'] = $_POST['debug_level'];
+	
+	$fp = fopen($usrConfig, 'w');
+	fwrite($fp, serialize($usrSettings));
+	fclose($fp);
+}
+
+/**
+ * Handle a post request
+ */
+if ($_SERVER['REQUEST_METHOD'] == 'POST' 
+	&& $error == false
+	&& !isset($qstr['action'])
+	) {
+	
+    $tplFile = 'user_process.tpl';
+
+/**
+ * Revoke
+ */
+} elseif ($qstr['action'] == 'revoke'
+	&& $_SERVER['REQUEST_METHOD'] == 'POST' 
+	) {
+	
+	$tplFile = 'user_process.tpl';
+	
+} elseif ($qstr['action'] == 'revoke') {
+    $replace['{{ domain }}'] = str_replace('www.', '', $qstr['domain']);
+    $tplFile = 'user_revoke.tpl';
+
+/**
+ * Settings
+ */
+} elseif ($qstr['action'] == 'settings') {
+	if ($usrSettings['remote_admin'] === 1) {
+		$replace['{{ remote_admin }}'] = ' checked';
+	} else {
+		$replace['{{ remote_admin }}'] = '';
+	}
+	if ($usrSettings['auto_ip'] === 1) {
+		$replace['{{ auto_ip }}'] = ' checked';
+	} else {
+		$replace['{{ auto_ip }}'] = '';
+	}
+	if (ctype_digit($usrSettings['debug_level'])) {
+		$replace['{{ debug_level }}'] = $usrSettings['debug_level'];
+	} else {
+		$replace['{{ debug_level }}'] = '';
+	}
+    $tplFile = 'user_settings.tpl';
+ 
+/**
+ * Default -> Order
+ */
+} else {
+    $replace['{{ domain }}'] = str_replace('www.', '', $qstr['domain']);
+    $tplFile = 'user_index.tpl';
+
+}
+
+/**
+ * Load translation
+ */
+define('LANGPATH', $_ENV['DOCUMENT_ROOT'] .'/../etc/');
+require($_ENV['DOCUMENT_ROOT'] ."/../lib/i18n.php");
+$replace = array_merge($replace, getTranslation($_SERVER['LANGUAGE']));
+
+/**
+ * Load template
+ */
+$template = file_get_contents($_ENV['DOCUMENT_ROOT'] .'/../skins/default/'. $tplFile);
+
+/*
+ * Include files (Django style)
+ */
+preg_match_all("/\{% include \"([^\"]*)\" %\}/", $template , $includeMatch);
+foreach ($includeMatch[1] as $include){
+	$replace['{% include "'. $include .'" %}'] = file_get_contents($_ENV['DOCUMENT_ROOT'] .'/../skins/default/'. basename($include));
+}
+echo strtr($template, $replace);
+
+?>

@@ -1,0 +1,102 @@
+#!/usr/local/bin/php
+<?php
+/*
+* PHP version 5
+*
+* LICENSE: BSD License
+*
+* Copyright © 2012 GMO GlobalsSign KK.
+* All Rights Reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted provided that the following conditions 
+* are met:
+* 1. Redistributions of source code must retain the above copyright
+*    notice, this list of conditions and the following disclaimer.
+* 2. Redistributions in binary form must reproduce the above copyright
+*    notice, this list of conditions and the following disclaimer in the
+*    documentation and/or other materials provided with the distribution.
+* 3. The name of the author may not be used to endorse or promote products
+*    derived from this software without specific prior written permission.
+* 
+* THIS SOFTWARE IS PROVIDED BY GMO GLOBALSIGN KK "AS IS" AND ANY EXPRESS OR
+* IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+* OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+* IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, 
+* INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+* NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+* DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+* THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+* (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+* THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*
+* @copyright  Copyright © 2012 GMO GlobalsSign KK. All Rights Reserved. (http://www.globalsign.com)
+* @license    BSD License (3 Clause)
+* @version    $Id$
+* @link       http://www.globalsign.com/ssl/oneclickssl/
+*/
+
+/**
+ * Check PHP version, simplexml, soap, curl
+ */  
+$version = explode('.', PHP_VERSION);
+if ($version[0] < 5) {
+	echo 'You are using a very old PHP version please upgrade your installation to use this plugin. Check <a href="http://help.directadmin.com/item.php?id=135">this manual</a> for mor information on how to upgrade.';
+	exit;
+}
+unset($version);
+
+/**
+ * Read config file
+ */
+$config = $_ENV['DOCUMENT_ROOT'] .'/../etc/oneclick.conf';
+$settings = unserialize(@file_get_contents($config));
+
+/**
+ * Update config on post
+ */
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	parse_str($_ENV['POST'], $_POST);
+	
+	$settings['environment'] = $_POST['environment'];
+	$settings['da_user'] = $_POST['da_user'];
+	$settings['da_passwd'] = $_POST['da_passwd'];
+	$settings['debug_level'] = $_POST['debug_level'];
+	$settings['voucher_url'] = $_POST['voucher_url'];
+	$settings['da_loginkey'] = $_POST['da_loginkey'];
+	
+	$fp = fopen($config, 'w');
+	fwrite($fp, serialize($settings));
+	fclose($fp);
+}
+
+$replace = array();
+$replace['{{ environment }}'] = $settings['environment'];
+$replace['{{ da_user }}'] = $settings['da_user'];
+$replace['{{ da_passwd }}'] = $settings['da_passwd'];
+$replace['{{ debug_level }}'] = $settings['debug_level'];
+$replace['{{ voucher_url }}'] = $settings['voucher_url'];
+$replace['{{ da_loginkey }}'] = $settings['da_loginkey'];
+
+/**
+ * Load translation
+ */
+define('LANGPATH', $_ENV['DOCUMENT_ROOT'] .'/../etc/');
+require($_ENV['DOCUMENT_ROOT'] ."/../lib/i18n.php");
+$replace = array_merge($replace, getTranslation($_SERVER['LANGUAGE']));
+
+/**
+ * Load template
+ */
+$template = file_get_contents($_ENV['DOCUMENT_ROOT'] .'/../skins/default/admin_index.tpl');
+
+/*
+ * Include files (Django style)
+ */
+preg_match_all("/\{% include \"([^\"]*)\" %\}/", $template , $includeMatch);
+foreach ($includeMatch[1] as $include){
+	$replace['{% include "'. $include .'" %}'] = file_get_contents($_ENV['DOCUMENT_ROOT'] .'/../skins/default/'. basename($include));
+}
+echo strtr($template, $replace);
+
+?>

@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FailedToFindExistingCertificate" xml:space="preserve">
+    <value>Kon certificaat voor verlenging niet vinden</value>
+  </data>
+  <data name="FailedToObtainRealCertificate" xml:space="preserve">
+    <value>Kon geen certificaat opvragen</value>
+  </data>
+  <data name="FailedToObtainTestCertificate" xml:space="preserve">
+    <value>Kon geen testcertificaat opvragen</value>
+  </data>
+  <data name="HelpText" xml:space="preserve">
+    <value>"GlobalSign OneClickSSL(tm) Installer v{0}            (c)GMO GlobalSign, 2012
+===============================================================================
+
+Gebruik deze toepassing om OneClickSSL-vouchers te verzilveren en om SSL
+beveiliging en het ‘gele hangslot’ voor uw website automatisch te activeren
+
+Gebruik:
+  OneClickSSL -? | -help
+  OneClickSSL [opties] Voucher DomainName IPAddress
+
+SSL activeren Voorbeeld(en):
+============================
+oneclickssl AD34EF6700142 www.mijndomein.com
+oneclickssl AD34EF6700142 www.mijndomein.com -natip 192.168.2.1 -debug
+oneclickssl NONUNIQUEVOCR www.mijndomein.com -voucheroption j.dam@mijndomein.com
+
+SSL intrekken Voorbeeld(en): (alleen voor gevorderde gebruikers)
+================================================================
+oneclickssl -revoke 0100012698b9b97c www.mijndomein.com
+oneclickssl -debug -revoke 0100012699b97c www.mijndomein.com -natip 192.168.2.1
+
+Opties:
+  -revoke
+  -sslport SSLPort
+  -voucheroption "Opties"
+  -language LanguageCode
+  -natip NATIPAddress
+  -debug
+  -testurl WebServiceURL
+  -quiet
+
+Beschrijving:
+  -? or -help                - Geef deze help weer
+  Voucher                    - Dit is de GlobalSign OneClick-Voucher zoals
+                               geleverd door GlobalSign of gelieerde
+                               wederverkoper.
+  DomainName                 - Het adres van de website en de domeinnaam.
+  IPAddress                  - Het IP-adres voor de ISS SSL-website. Als u
+                               dit weglaat, wordt DNS gebruikt om het te 
+                               achterhalen.
+  -revoke                    - Intrekken van een certificaat op basis van
+                               domeinnaam en serienummer 
+  -sslport SSLPort           - Optioneel SSL HTTP-poortnummer indien niet 443
+  -voucheroption "Opties"    - Promotionele-Vouchers gebruikt voor proef
+                               certificaten moeten vergezeld gaan van een 
+                               geldig e-mailadres.
+  -language LanguageCode     - Taalcode, geeft de vertaling aan (uitvoer). 
+                               Kan zijn: en, fr, ja, nl, de of es
+  -natip NATIPAddress        - Het lokale IP-adres voor netwerken gebaseerd
+                               op NAT. Alleen nodig bij gebruik van een door
+                               een netwerk vertaald IP-adres.
+  -siteid IISSiteNumber      - Het ID-nummer voor de website in IIS. Gebruik
+                               dit als de site niet automatisch kan worden 
+                               vastgesteld aan de hand van de domeinnaam.
+  -debug                     - Tekstuitvoer voor het verhelpen van problemen
+  -testurl WebServiceURL     - Hiermee is het gebruik van een alternatieve
+                               webfunctie URL toegestaan
+  -quiet                     - Alle uitvoer wordt onderdrukt</value>
+  </data>
+  <data name="InvalidOperatingSystem" xml:space="preserve">
+    <value>Besturingssysteem wordt niet ondersteund. Dit moet Windows Server 2003 SP1 of nieuwer zijn.</value>
+  </data>
+  <data name="ParameterDomainNameInvalid" xml:space="preserve">
+    <value>Onjuiste notatie domeinnaam</value>
+  </data>
+  <data name="ParameterIPAddressInvalid" xml:space="preserve">
+    <value>Onjuiste notatie IP-adres</value>
+  </data>
+  <data name="ParametersAreInvalid" xml:space="preserve">
+    <value>Ongeldige of ontbrekende parameters</value>
+  </data>
+  <data name="ParameterSSLPortInvalid" xml:space="preserve">
+    <value>Ongeldige of ontbrekende SSL-poort</value>
+  </data>
+  <data name="ParameterSSLPortNotInRange" xml:space="preserve">
+    <value>SSL-poort buiten bereik</value>
+  </data>
+  <data name="ParameterTestWebServiceInvalid" xml:space="preserve">
+    <value>Testwebfunctie URL is ongeldig. Deze dient op HTTPS gebaseerd te zijn.</value>
+  </data>
+  <data name="ParameterVoucherInvalid" xml:space="preserve">
+    <value>Voucher is ongeldig</value>
+  </data>
+  <data name="ProcessingText" xml:space="preserve">
+    <value>"OneClickSSL(tm) Installer v{0}                  (c)GMO GlobalSign, 2012
+=============================================================================
+Gebruik deze toepassing om OneClickSSL vouchers te verzilveren en om SSL-
+beveiliging en het ‘gele hangslot’ voor uw website automatisch te activeren
+
+OneClickSSL beveiligde website activering aan de gang.
+
+Gelieve deze pagina niet te sluiten noch van deze pagina weg te surfen voordat
+het proces voltooid is...
+-----------------------------------------------------------------------------</value>
+  </data>
+  <data name="RealCertificateFailedAPIConnection" xml:space="preserve">
+    <value>Kon geen verbinding tot stand brengen met certificate service.</value>
+  </data>
+  <data name="TestCertificateFailedAPIConnection" xml:space="preserve">
+    <value>Kon geen verbinding tot stand brengen met test certificate service.</value>
+  </data>
+  <data name="UnableToConnectToIIS" xml:space="preserve">
+    <value>Kan domein niet vinden. Kon geen verbinding tot stand brengen met IIS of IIS is niet geïnstalleerd.</value>
+  </data>
+  <data name="UnableToFindDomainInIIS" xml:space="preserve">
+    <value>Kan domein niet vinden in IIS.</value>
+  </data>
+  <data name="UnableToSetSSLProperties" xml:space="preserve">
+    <value>Kan IIS-website niet configureren met SSL-certificaat</value>
+  </data>
+  <data name="VoucherFailedAPIConnection" xml:space="preserve">
+    <value>Kon geen verbinding tot stand brengen met vouchercontroledienst</value>
+  </data>
+  <data name="ProcessComplete" xml:space="preserve">
+    <value>Klaar. Gefeliciteerd, uw website-certificaat is geïnstalleerd!</value>
+  </data>
+  <data name="ParameterLanguageCodeInvalid" xml:space="preserve">
+    <value>Taalcode kan alleen en, fr, jp, nl, de of es zijn</value>
+  </data>
+  <data name="ParameterNATIPAddressInvalid" xml:space="preserve">
+    <value>Onjuiste notatie NAT IP-adres</value>
+  </data>
+  <data name="FailedToRevokeCertificate" xml:space="preserve">
+    <value>Het intrekken van het certificaat is mislukt</value>
+  </data>
+  <data name="RevokeCertificateFailedAPIConnection" xml:space="preserve">
+    <value>Het maken van de verbinding met de dienst om het certificaat in te trekken is mislukt</value>
+  </data>
+  <data name="PerformingDomainVerification" xml:space="preserve">
+    <value>Domeinverificatie en Aanvraag SSL Certificaat worden uitgevoerd</value>
+  </data>
+  <data name="PerformingRevocationVerification" xml:space="preserve">
+    <value>Domeinverificatie en Controle Status SSL certificaat worden uitgevoerd</value>
+  </data>
+  <data name="RevokingSSLCertificate" xml:space="preserve">
+    <value>SSL certificaat wordt gerevokeerd en verwijderd van de website</value>
+  </data>
+  <data name="SendingSerialNumberAndDomain" xml:space="preserve">
+    <value>Serienummer en domeingegevens worden naar de GlobalSign OneClickSSL verstuurd</value>
+  </data>
+  <data name="SendingVoucherAndDomain" xml:space="preserve">
+    <value>Voucher en Domeingegevens worden naar de GlobalSign OneClickSSL serviceverstuurd</value>
+  </data>
+  <data name="SettingUpAndActivating" xml:space="preserve">
+    <value>Installatie SSL en activering van de beveiligde website</value>
+  </data>
+  <data name="SetupSuccessful" xml:space="preserve">
+    <value>OneClickSSL beveiligde website setup succesvol voltooid!</value>
+  </data>
+  <data name="SetupUnSuccessful" xml:space="preserve">
+    <value>Het SSL certificaat kon niet worden geïnstalleerd. We raden u aan om hetinstallatieproces een tweede keer uit te voeren en gebruik te maken van dedebug mode om fouten op te sporen. De debug output kan nuttig zijn voor uw Support Team. Gelieve “&gt;debugoutput.txt” in de opdrachtregel in te voeren om de output te bewaren in een tekstbestand.Een help-menu is beschikbaar met oneclickssl -? of -help</value>
+  </data>
+  <data name="DNSSetToResolveInternally" xml:space="preserve">
+    <value>De DNS-zoekopdracht voor uw domein heeft hetzelfde IP adres als uw NAT instelling. Dit lijkt erop te wijzen dat u een interne DNS server heeft.Gelieve het Hosts-bestand op deze server te wijzigen zodat dit naar het ware externe DNS IP adres wijst. het Hosts-bestand kan gevonden worden in de folder windows/system32/drivers/etc en kan gewijzigd worden in Administrator modus met behulp van Notepad of een gelijkaardige editor.</value>
+  </data>
+  <data name="FormAgreement" xml:space="preserve">
+    <value>Ik heb de voorwaarden van de OneClickSSL Subscriber Agreement
+(de abonneeovereenkomst) gelezen en accepteer deze </value>
+  </data>
+  <data name="FormAdvancedMode" xml:space="preserve">
+    <value>Geavanceerde
+modus</value>
+  </data>
+  <data name="FormDomainNameHelp" xml:space="preserve">
+    <value>bijv. www.uwdomein.com</value>
+  </data>
+  <data name="FormDomainNameTitle" xml:space="preserve">
+    <value>Domeinnaam</value>
+  </data>
+  <data name="FormEmailAddressHelp" xml:space="preserve">
+    <value>Instructies/foutberichten per e-mail</value>
+  </data>
+  <data name="FormEmailAddressTitle" xml:space="preserve">
+    <value>E-mailadres</value>
+  </data>
+  <data name="FormIntroDescription" xml:space="preserve">
+    <value>Gebruik deze toepassing om OneClickSSL-vouchers te verzilveren en automatischSSL-
+beveiliging te activeren met het "beveiligingshangslot" voor uw website.</value>
+  </data>
+  <data name="FormIntroTitle" xml:space="preserve">
+    <value>Installatieprogramma GlobalSign OneClickSSL</value>
+  </data>
+  <data name="FormVoucherCodeHelp" xml:space="preserve">
+    <value>bijv. AGB6542HDFS4355A</value>
+  </data>
+  <data name="FormProcessButton" xml:space="preserve">
+    <value>Activeer SSL</value>
+  </data>  
+  <data name="FormVoucherCodeTitle" xml:space="preserve">
+    <value>Voucher</value>
+  </data>
+  <data name="FormAgreementLink" xml:space="preserve">
+    <value>Klik hier om de abonneeovereenkomst te bekijken</value>
+  </data>
+  <data name="FormProcessRevokeButton" xml:space="preserve">
+    <value>Certificaat intrekken</value>
+  </data>
+  <data name="FormSerialNumberHelp" xml:space="preserve">
+    <value>bijv. 11212b0523fa14b061f78f3401895810a59f</value>
+  </data>
+  <data name="FormSerialNumberTitle" xml:space="preserve">
+    <value>Serienummer</value>
+  </data>
+  <data name="FormAdvancedOptions" xml:space="preserve">
+    <value>Geavanceerde opties</value>
+  </data>
+ <data name="FormRevokeTitle" xml:space="preserve">
+    <value>Intrekken</value>
+  </data>
+  <data name="FormShowDebugTitle" xml:space="preserve">
+    <value>Debug Mode</value>
+  </data>
+  <data name="FormNATIPAddressTitle" xml:space="preserve">
+    <value>NATIP-adres</value>
+  </data>
+  <data name="FormSSLPortTitle" xml:space="preserve">
+    <value>SSL-poort</value>
+  </data>  
+  <data name="FormSiteIdTitle" xml:space="preserve">
+    <value>IIS Website (SiteID)</value>
+  </data>  
+  <data name="FormIPAddressTitle" xml:space="preserve">
+    <value>IP-adres</value>
+  </data>
+  <data name="FormAdvancedOptionsHelp" xml:space="preserve">
+    <value>Met deze opties kunt u extra geavanceerde opties bieden voor het toepassen of intrekken van uw SSL.</value>
+  </data>
+  <data name="FormRevokeWarning" xml:space="preserve">
+    <value>"Wilt u het SSL-certificaat echt intrekken dat bij dit domein hoort?Als  u besluit hiermee door te gaan, kan het proces niet ongedaan worden gemaakt en partijen die deze website bezoeken zullen door hun browsersoftware worden gewaarschuwd dat het websitecertificaat niet meer geldig is.  We raden aan intrekking alleen door te voeren in het geval dat de privé sleutel die bij het SSL-certificaat hoort verloren is of corrupt is of wanneer de informatie in het certificaat onjuist wordt geacht."</value>
+  </data>
+  <data name="FormErrorOccured" xml:space="preserve">
+    <value>Er is een fout opgetreden. Klik hier voor meer informatie</value>
+  </data>
+  <data name="FormKeyInformationMissing" xml:space="preserve">
+    <value>U moet alle gegevens opgeven voordat u verder gaat.</value>
+  </data>
+  <data name="FormManualConfiguration" xml:space="preserve">
+    <value>Handmatige configuratiemodus</value>
+  </data>
+  <data name="ManualConfigurationPause" xml:space="preserve">
+    <value>Het tijdelijke certificaat is in het certificaatarchief geïnstalleerd. U kunt nu de benodigde handmatige verwerking uitvoeren. Druk op OK om door te gaan met het aanvragen van een certificaat.</value>
+  </data>
+  <data name="FollowingCertInstalled" xml:space="preserve">
+    <value>Het volgende certificaat wordt geïnstalleerd...</value>
+  </data>
+  <data name="InstallingCert" xml:space="preserve">
+    <value>Certificaat wordt geïnstalleerd...</value>
+  </data>
+  <data name="UnableGenCSR" xml:space="preserve">
+    <value>MISLUKT - CSR kan niet worden gegenereerd:</value>
+  </data>
+  <data name="NewCSR" xml:space="preserve">
+    <value>Nieuwe CSR-aanvraag wordt geanalyseerd en verwerkt...</value>
+  </data>
+  <data name="CSRDisplay" xml:space="preserve">
+    <value>GELUKT -  de gegenereerde CSR  is als volgt...</value>
+  </data>
+  <data name="GenCSR" xml:space="preserve">
+    <value>CSR (Certificate  Signing  Request) wordt gegenereerd...</value>
+  </data>
+  <data name="UnableInstallCert" xml:space="preserve">
+    <value>MISLUKT, kan certificaat niet installeren.</value>
+  </data>
+  <data name="ValidatingCertInstallation" xml:space="preserve">
+    <value>Installatie van certificaat wordt gecontroleerd</value>
+  </data>
+  <data name="CleanUpTempCert" xml:space="preserve">
+    <value>Tijdelijk certificaat wordt verwijderd...</value>
+  </data>
+  <data name="StartingSetupProcess" xml:space="preserve">
+    <value>OneClickSSL-proces voor instellen wordt gestart</value>
+  </data>
+  <data name="StartingRevokeProcess" xml:space="preserve">
+    <value>OneClickSSL-proces voor intrekken wordt gestart</value>
+  </data>
+  <data name="HelpTextLinux" xml:space="preserve">
+    <value>
+
+
+GlobalSign OneClickSSL(tm) Installatieprogramma v{0} (c)GMO GlobalSign, 2012
+=============================================================================
+GlobalSign OneClickSSL(tm) Installatieprogramma (c)GMO GlobalSign, 2012
+=============================================================================
+Gebruik deze toepassing om OneClickSSL vouchers te verzilveren en om SSL-beveiliging
+en het‘gele hangslot voor uw website automatisch te activeren
+
+Gebruik:
+   
+ php oneclickssl.php -h
+ php oneclickssl.php -v Voucher -d  Domeinnaam [IP-adres] -o e-mailadres
+
+Voorbeelden van activering SSL:
+========================
+php oneclickssl.php -v AD34EF6700G67142 -d www.mijndomein.com -o e-mail@voorbeeld.com
+php oneclickssl.php -v NIETUNIEKEVOUCHER -d www.mijndomein.com -o j.doe@mijndomein.com
+
+Voorbeelden van intrekking SSL: (uitsluitend voor geavanceerde gebruikers)
+================================================
+php oneclickssl.php -r -v 0100012698b9b97c -d www.mijndomein.com -o e-mail@domein.com
+
+Opties:
+  -r
+  -s       SSLPoort
+  -o       "Opties"
+  -l       Taalcode
+  -testurl WebServiceURL
+
+Beschrijving:
+  -h                -  Deze help weergeven
+  -v  Voucher       -  Dit is de GlobalSign OneClickSSL voucher doe door 
+                       GlobalSign of een partner is geleverd
+  -d  Domeinnaam    -  het adres en de gewone naam van de website.
+  -r                -  een certificaat intrekken op basis van het serienummer 
+                       en de domeinnaam
+  -s  Poort         -  optioneel SSL  HTTP-poortnummer indien anders dan 443
+  -o  "Opties"      -  promotiecodes voor voucher die voor het maken van test-
+                       certificaten worden gebruikt, moeten vergezeld gaan van een 
+                       geldig e-mailadres om aanvullende instructies te kunnen leveren.
+  -l  Taalcode      -  hiermee wordt de taal van de uitvoer gespecificeerd.  
+                       De mogelijkheden zijn: en, fr, ja, jp, nl, de, of es
+  -t  WebServiceURL -  maakt het gebruik van een URL van een andere webservice mogelijk</value>
+  </data>
+  <data name="RollingBack" xml:space="preserve">
+    <value>FOUT opgetreden; terug naar het vorige certificaat</value>
+  </data>
+  <data name="AssigningProduction" xml:space="preserve">
+    <value>Certificaat wordt aan de website toegewezen</value>
+  </data>
+  <data name="AssigningTemporary" xml:space="preserve">
+    <value>Tijdelijk certificaat wordt aan de website toegewezen...</value>
+  </data>
+  <data name="ReceivingVoucherValCheck" xml:space="preserve">
+    <value>Ontvangst van voucher-validatie, inclusief phishing-controle en trefwoordanalyse van domein...</value>
+  </data>
+  <data name="ReceivingSerialValCheck" xml:space="preserve">
+    <value>Ontvangst van serienummer validatie…</value>
+  </data>
+  <data name="SendingTemp" xml:space="preserve">
+    <value>Verzenden aanvraag tijdelijk certificaat…</value>
+  </data>
+  <data name="ReceivingTemp" xml:space="preserve">
+    <value>Ontvangst van tijdelijk certificaat...</value>
+  </data>
+  <data name="ReceivingProd" xml:space="preserve">
+    <value>Ontvangst van certificaat..</value>
+  </data>
+  <data name="ReceivingRevoke" xml:space="preserve">
+    <value>Ontvangst van aanvraag voor intrekking...</value>
+  </data>
+  <data name="OrderIDInfo" xml:space="preserve">
+    <value>OPMERKING:  deze order-id voor een 'Tijdelijk' certificaat dient te worden vermeld indien contact met ons team voor technische ondersteuning wordt opgenomen:</value>
+  </data>
+  <data name="SendingProd" xml:space="preserve">
+    <value>Verzenden aanvraag productie certificaat</value>
+  </data>
+  <data name="CertRevoked" xml:space="preserve">
+    <value>Certificaat ingetrokken</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>GELUKT</value>
+  </data>
+  <data name="CertDisplay" xml:space="preserve">
+    <value>Certificaat als volgt ontvangen:</value>
+  </data>
+  <data name="Failure" xml:space="preserve">
+    <value>MISLUKT</value>
+  </data>
+  <data name="IntCertReceived" xml:space="preserve">
+    <value>Tussenliggend certificaat als volgt ontvangen:</value>
+  </data>
+  <!-- DA Plugin -->
+  <data name="Save" xml:space="preserve">
+    <value>Opslaan</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annuleren</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Standaard</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Gebruikersnaam</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Wachtwoord</value>
+  </data>
+  <data name="RevokeCert" xml:space="preserve">
+    <value>Aanvragen van een certificaat intrekking</value>
+  </data>
+  <data name="CheckIP" xml:space="preserve">
+    <value>Controleren of website draait op een dedicated / uniek IP-adres</value>
+  </data>
+  <data name="CheckVoucher" xml:space="preserve">
+    <value>Bezig met het controleren van het domein en de voucher</value>
+  </data>
+  <data name="DoBackup" xml:space="preserve">
+    <value>Back-up van het huidige certificaat maken</value>
+  </data>
+  <data name="ProcessingTitle" xml:space="preserve">
+    <value>GlobalSign OneClickSSL Installatie</value>
+  </data>
+  <data name="ProcessingDescription" xml:space="preserve">
+    <value>Bezig met het beveiligen van de website via OneClickSSL, deze pagina niet sluiten tot het process voltooid is</value>
+  </data>
+  <data name="OrderError" xml:space="preserve">
+    <value>Fout bij het plaatsen van de bestelling</value>
+  </data>
+  <data name="StatusError" xml:space="preserve">
+    <value>Fout bij het verkrijgen van de bestelling status</value>
+  </data>
+  <data name="TestWindow" xml:space="preserve">
+    <value>Klik om een test scherm voor uw beveiligde site te openen</value>
+  </data>
+  <data name="ShowDebug" xml:space="preserve">
+    <value>Debug informatie weergeven</value>
+  </data>
+  <data name="FormObtainingVouchersTitle" xml:space="preserve">
+    <value>OneClickSSL Vouchers verkrijgen</value>
+  </data>
+  <data name="FormObtainingVouchersDescription" xml:space="preserve">
+    <value>Customize the experience for domain owners. You have the ability to control the experience of domain owners and the methods by which they obtain OneClickSSL vouchers. Please change the URL below to a landing page of your own if you are a GlobalSign reseller. The URL is called when domain owners click on the 'No Voucher, Get one here' image from within their plugin.</value>
+  </data>
+  <data name="FormLandingPage" xml:space="preserve">
+    <value>Bestemmings URL</value>
+  </data>
+</root>
