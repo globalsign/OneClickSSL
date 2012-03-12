@@ -365,8 +365,4 @@ $oneclick->output()->debug()->setLevel(1);
 // Write procgress into status file (default: 0)
 //$oneclick->output()->status()->setStatusPath(realpath('/tmp/'))->setWriteStatus(true);
 
-if ($oneclick->order() < 0) {
-	echo "Order/installation error". PHP_EOL;
-} else {
-	echo "Order and installation successfully completed". PHP_EOL;
-}
+$oneclick->order();
