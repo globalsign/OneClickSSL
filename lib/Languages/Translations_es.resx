@@ -281,7 +281,13 @@ el proceso...
     <value>Instalación OneClickSSL sitio seguro exitosa.</value>
   </data>
   <data name="SetupUnSuccessful" xml:space="preserve">
-    <value>No conseguimos instalar el certificado SSL. Le aconsejamos volver a ejecutar elproceso de instalación utilizando el modo de depuración para detectar erroresobvios. La salida de depuración también es un fichero útil para su equipo desoporte técnico.  Anexe "&gt;debugoutput.txt" en la línea de comandos para guardarla salida en un archivo de texto.Un menú de ayuda está disponible con oneclickssl -? o -help</value>
+    <value>No conseguimos instalar el certificado SSL. Le aconsejamos volver a ejecutar el
+proceso de instalación utilizando el modo de depuración para detectar errores
+obvios. La salida de depuración también es un fichero útil para su equipo de
+soporte técnico.  Anexe "&gt;debugoutput.txt" en la línea de comandos para guardar
+la salida en un archivo de texto.
+
+Un menú de ayuda está disponible con oneclickssl -? o -help</value>
   </data>
   <data name="FormAgreement" xml:space="preserve">
     <value>He leído y acepto los términos y condiciones del 
@@ -322,7 +328,8 @@ correo electrónico</value>
     <value>e-mail</value>
   </data>
   <data name="FormIntroDescription" xml:space="preserve">
-    <value>"Utilice esta aplicación para canjear los bonos OneClickSSL y activar automáticamentela 
+    <value>"Utilice esta aplicación para canjear los bonos OneClickSSL y activar automáticamente
+la 
 seguridad SSL y el "candado seguro" en su página web."</value>
   </data>
   <data name="FormIntroTitle" xml:space="preserve">
@@ -357,7 +364,8 @@ seguridad SSL y el "candado seguro" en su página web."</value>
 del certificado SSL.</value>
   </data>
   <data name="FormRevokeWarning" xml:space="preserve">
-    <value>"¿Está seguro de que desea revocar el certificado SSL que pertenece a este domino?Si opta por continuar, el proceso no tendrá marcha atrás; al conectarse a esta página web, las partes afectadas recibirán un aviso en su navegador informándoles de que el certificado ya no es válido.   Se recomienda proceder a la revocación únicamente en caso de pérdida de la clave privada asociada al certificado SSL, en caso de que la misma esté en riesgo, o bien cuando se estime incorrecta la información incluida en el certificado."</value>
+    <value>"¿Está seguro de que desea revocar el certificado SSL que pertenece a este domino?
+Si opta por continuar, el proceso no tendrá marcha atrás; al conectarse a esta página web, las partes afectadas recibirán un aviso en su navegador informándoles de que el certificado ya no es válido.   Se recomienda proceder a la revocación únicamente en caso de pérdida de la clave privada asociada al certificado SSL, en caso de que la misma esté en riesgo, o bien cuando se estime incorrecta la información incluida en el certificado."</value>
   </data>
   <data name="FormErrorOccured" xml:space="preserve">
     <value>Se ha detectado un error. Haga clic aquí para obtener más información</value>
@@ -519,7 +527,7 @@ Descripción:
   <data name="RevokeCert" xml:space="preserve">
     <value>Requesting certificate revocation</value>
   </data>
-  <data name="CheckIP" xml:space="preserve">
+  <data name="CheckIp" xml:space="preserve">
     <value>Checking if this webiste runs on a dedicated/unique ip address</value>
   </data>
   <data name="CheckVoucher" xml:space="preserve">
