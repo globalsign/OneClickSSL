@@ -9,7 +9,7 @@
 *
 * LICENSE: BSD License
 *
-* Copyright � 2012 GMO GlobalsSign KK.
+* Copyright © 2012 GMO GlobalsSign KK.
 * All Rights Reserved.
 *
 * Redistribution and use in source and binary forms, with or without
@@ -65,8 +65,11 @@ class ExampleOneClick implements OneClickSSLPlugin
     {  	    			
 	// Just some debugging information
 	$this->debug(1, "Exporting certificates to the file system");
-  	$this->debug(2, "Certificate:\n". $certificate);
-	$this->debug(2, "Intermediates:\n". $cacert);
+  	$this->debug(2, "Certificate:". PHP_EOL . $certificate);
+	$this->debug(2, "Intermediates:". PHP_EOL . $cacert);
+	
+	// You need to save the certificates to you filesystem, database or any
+	// other location where your webserver, proxy or loadbalancer can use them.
 	
 	// Return certificate
         return $certificate;
