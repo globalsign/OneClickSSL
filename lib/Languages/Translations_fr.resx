@@ -266,7 +266,8 @@ Ne fermez pas et ne quittez pas cette page avant la fin du processus...
     <value>Révocation du certificat SSL en cours</value>
   </data>
   <data name="SendingSerialNumberAndDomain" xml:space="preserve">
-    <value>Envoi du numéro de série et des informations du domaine au service OneClickSSLGlobalSign.</value>
+    <value>Envoi du numéro de série et des informations du domaine au service OneClickSSL
+GlobalSign.</value>
   </data>
   <data name="SendingVoucherAndDomain" xml:space="preserve">
     <value>Envoi des informations du bon et du domaine au service OneClickSSL GlobalSign</value>
@@ -278,10 +279,18 @@ Ne fermez pas et ne quittez pas cette page avant la fin du processus...
     <value>Installation de sécurité de site OneClickSSL réussie!</value>
   </data>
   <data name="SetupUnSuccessful" xml:space="preserve">
-    <value>Nous n’avons pas pu installer de certificat SSL. Nous vous conseillons del’installer à nouveau en mode –debug pour vous aider à identifier l’erreur. Lasortie en clair peut aussi être utilisée par votre équipe d’assistance.Ajoutez  "&gt;debugoutput.txt" à la ligne de commande pour enregistrer la sortieen fichier texte.Un menu d'aide est disponible avec oneclickssl -? ou -help</value>
+    <value>Nous n’avons pas pu installer de certificat SSL. Nous vous conseillons de
+l’installer à nouveau en mode –debug pour vous aider à identifier l’erreur. La
+sortie en clair peut aussi être utilisée par votre équipe d’assistance.
+Ajoutez  "&gt;debugoutput.txt" à la ligne de commande pour enregistrer la sortie
+en fichier texte.
+
+Un menu d'aide est disponible avec oneclickssl -? ou -help</value>
   </data>
   <data name="DNSSetToResolveInternally" xml:space="preserve">
-    <value>La recherche de votre domaine par le DNS a fourni la même adresse IP que pour votre configuration NAT (traduction d’adresse réseau). Il semblerait donc que vous avez un serveur DNS interne.Afin de pouvoir réussir votre installation, veuillez modifier le fichier « host » sur votre serveur de façon à ce qu’il indique la véritable adresse IP externe DNS. Vous trouverez le fichier host à l’emplacement suivant : windows/system32/drivers/etc . Pour le modifier, il vous faudra ouvrir le fichier en mode administrateur sur un éditeur de texte, tel le bloc-notes.</value>
+    <value>La recherche de votre domaine par le DNS a fourni la même adresse IP que pour votre configuration NAT (traduction d’adresse réseau). Il semblerait donc que vous avez un serveur DNS interne.
+Afin de pouvoir réussir votre installation, veuillez modifier le fichier « host » sur votre serveur de façon à ce qu’il indique la véritable adresse IP externe DNS. Vous trouverez le fichier host à l’emplacement suivant : windows/system32/drivers/etc . 
+Pour le modifier, il vous faudra ouvrir le fichier en mode administrateur sur un éditeur de texte, tel le bloc-notes.</value>
   </data>
   <data name="FormAgreement" xml:space="preserve">
     <value>J'ai lu et accepte les modalités du contrat de souscription OneClickSSL</value>
@@ -519,7 +528,7 @@ Description:
   <data name="RevokeCert" xml:space="preserve">
     <value>Requesting certificate revocation</value>
   </data>
-  <data name="CheckIP" xml:space="preserve">
+  <data name="CheckIp" xml:space="preserve">
     <value>Checking if this webiste runs on a dedicated/unique ip address</value>
   </data>
   <data name="CheckVoucher" xml:space="preserve">
