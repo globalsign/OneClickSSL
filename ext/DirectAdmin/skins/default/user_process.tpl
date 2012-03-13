@@ -16,8 +16,8 @@ $(document).ready(function(){
     var imgError = 'OneClickSSL/images/errormark.png';
     
     var translation=new Array();
-	translation['checkIP']  	 = "{{ LANG::CheckIP }}";
-	translation['revokeCert']  	 = "{{ LANG::RevokeCert }}";
+	translation['checkIP']       = "{{ LANG::CheckIp }}";
+	translation['revokeCert']    = "{{ LANG::RevokeCert }}";
 	translation['checkVoucher']  = "{{ LANG::CheckVoucher }}";
 	translation['doBackup']      = "{{ LANG::DoBackup }}";
 	translation['restoreBackup'] = "{{ LANG::RollingBack }}";
@@ -27,7 +27,7 @@ $(document).ready(function(){
 	translation['realOrder']     = "{{ LANG::ValidatingCertInstallation }}, {{ LANG::SendingProd }}";
 	translation['installReal']   = "{{ LANG::AssigningProduction }}";
 	translation['orderDone']     = "{{ LANG::ProcessComplete }}";
-    translation['revokeDone']    = "{{ LANG::CertRevoked }}";
+	translation['revokeDone']    = "{{ LANG::CertRevoked }}";
 	
 	function getStatus() {
         $.getJSON('OneClickSSL/status.raw?d={{ domain }}', function(data) {
