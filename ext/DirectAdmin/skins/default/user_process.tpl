@@ -16,7 +16,7 @@ $(document).ready(function(){
     var imgError = 'OneClickSSL/images/errormark.png';
     
     var translation=new Array();
-	translation['checkIP']       = "{{ LANG::CheckIp }}";
+	translation['checkIp']       = "{{ LANG::CheckIp }}";
 	translation['revokeCert']    = "{{ LANG::RevokeCert }}";
 	translation['checkVoucher']  = "{{ LANG::CheckVoucher }}";
 	translation['doBackup']      = "{{ LANG::DoBackup }}";
