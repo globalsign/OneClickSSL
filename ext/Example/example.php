@@ -9,7 +9,7 @@
 *
 * LICENSE: BSD License
 *
-* Copyright © 2012 GMO GlobalsSign KK.
+* Copyright ï¿½ 2012 GMO GlobalsSign KK.
 * All Rights Reserved.
 *
 * Redistribution and use in source and binary forms, with or without
@@ -34,12 +34,13 @@
 * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @copyright  Copyright © 2012 GMO GlobalsSign KK. All Rights Reserved. (http://www.globalsign.com)
+* @copyright  Copyright ï¿½ 2012 GMO GlobalsSign KK. All Rights Reserved. (http://www.globalsign.com)
 * @license    BSD License (3 Clause)
 * @version    $Id$
 * @link       http://www.globalsign.com/ssl/oneclickssl/
 */
 
+// Please request your own platform id at a GlobalSign representive
 define("PLATFORMID", "000000000000000");
 define("KEYALGORITHM", "RSA");
 
@@ -62,15 +63,14 @@ class ExampleOneClick implements OneClickSSLPlugin
      */
     public function install($privateKey, $certificate, $cacert = null)
     {  	    			
-		// Just some debugging information
-		$this->debug(1, "Exporting certificates to the file system");
-  		$this->debug(2, "Certificate:\n". $certificate);
-		$this->debug(2, "Intermediates:\n". $cacert);
-			
-		
-		// Return certificate
+	// Just some debugging information
+	$this->debug(1, "Exporting certificates to the file system");
+  	$this->debug(2, "Certificate:\n". $certificate);
+	$this->debug(2, "Intermediates:\n". $cacert);
+	
+	// Return certificate
         return $certificate;
-	}
+    }
     
     /**
      * Check IP requirements, assign a unique IP if availible
@@ -94,7 +94,7 @@ class ExampleOneClick implements OneClickSSLPlugin
         // Return true on success, remove the function if you don't
         // want to create a backup
         return false;
-	}
+    }
 	
     /**
      * Restore the backup certificates
@@ -106,7 +106,7 @@ class ExampleOneClick implements OneClickSSLPlugin
         // Return true on success, remove the function if you don't
         // want to restore a backup
         return false;
-	}
+    }
     
     /**
      * Set the domain for the certificate
