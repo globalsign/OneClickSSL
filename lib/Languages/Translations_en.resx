@@ -1,1 +1,571 @@
-﻿<?xml version="1.0" encoding="utf-8"?><root>  <!--     Microsoft ResX Schema         Version 2.0        The primary goals of this format is to allow a simple XML format     that is mostly human readable. The generation and parsing of the     various data types are done through the TypeConverter classes     associated with the data types.        Example:        ... ado.net/XML headers & schema ...    <resheader name="resmimetype">text/microsoft-resx</resheader>    <resheader name="version">2.0</resheader>    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">        <value>[base64 mime encoded serialized .NET Framework object]</value>    </data>    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>        <comment>This is a comment</comment>    </data>                    There are any number of "resheader" rows that contain simple     name/value pairs.        Each data row contains a name, and value. The row also contains a     type or mimetype. Type corresponds to a .NET class that support     text/value conversion through the TypeConverter architecture.     Classes that don't support this are serialized and stored with the     mimetype set.        The mimetype is used for serialized objects, and tells the     ResXResourceReader how to depersist the object. This is currently not     extensible. For a given mimetype the value must be set accordingly:        Note - application/x-microsoft.net.object.binary.base64 is the format     that the ResXResourceWriter will generate, however the reader can     read any of the formats listed below.        mimetype: application/x-microsoft.net.object.binary.base64    value   : The object must be serialized with             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter            : and then encoded with base64 encoding.        mimetype: application/x-microsoft.net.object.soap.base64    value   : The object must be serialized with             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter            : and then encoded with base64 encoding.    mimetype: application/x-microsoft.net.object.bytearray.base64    value   : The object must be serialized into a byte array             : using a System.ComponentModel.TypeConverter            : and then encoded with base64 encoding.    -->  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />    <xsd:element name="root" msdata:IsDataSet="true">      <xsd:complexType>        <xsd:choice maxOccurs="unbounded">          <xsd:element name="metadata">            <xsd:complexType>              <xsd:sequence>                <xsd:element name="value" type="xsd:string" minOccurs="0" />              </xsd:sequence>              <xsd:attribute name="name" use="required" type="xsd:string" />              <xsd:attribute name="type" type="xsd:string" />              <xsd:attribute name="mimetype" type="xsd:string" />              <xsd:attribute ref="xml:space" />            </xsd:complexType>          </xsd:element>          <xsd:element name="assembly">            <xsd:complexType>              <xsd:attribute name="alias" type="xsd:string" />              <xsd:attribute name="name" type="xsd:string" />            </xsd:complexType>          </xsd:element>          <xsd:element name="data">            <xsd:complexType>              <xsd:sequence>                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />              </xsd:sequence>              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />              <xsd:attribute ref="xml:space" />            </xsd:complexType>          </xsd:element>          <xsd:element name="resheader">            <xsd:complexType>              <xsd:sequence>                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />              </xsd:sequence>              <xsd:attribute name="name" type="xsd:string" use="required" />            </xsd:complexType>          </xsd:element>        </xsd:choice>      </xsd:complexType>    </xsd:element>  </xsd:schema>  <resheader name="resmimetype">    <value>text/microsoft-resx</value>  </resheader>  <resheader name="version">    <value>2.0</value>  </resheader>  <resheader name="reader">    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>  </resheader>  <resheader name="writer">    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>  </resheader>  <data name="FailedToFindExistingCertificate" xml:space="preserve">    <value>Failed to find existing certificate for renewal</value>  </data>  <data name="FailedToObtainRealCertificate" xml:space="preserve">    <value>Failed to retrieve a Production certificate</value>  </data>  <data name="FailedToObtainTestCertificate" xml:space="preserve">    <value>Failed to retrieve a 'Temporary' certificate</value>  </data>  <data name="HelpText" xml:space="preserve">    <value>GlobalSign OneClickSSL(tm) Installer v{0}           (c)GMO GlobalSign, 2012=============================================================================Use this application to redeem OneClickSSL Vouchers and automatically activateSSL security and the "secure padlock" for your websiteUsage:    OneClickSSL -? | -help  OneClickSSL [options] Voucher DomainName [IPAddress]Activate SSL Example(s):========================oneclickssl AD34EF6700G67142 www.mydomain.comoneclickssl AD34EF6700G67142 www.mydomain.com -natip 192.168.2.1 -debugoneclickssl NONUNIQUEVOUCHER www.mydomain.com -voucheroption j.doe@mydomain.comRevoke SSL Example(s): (For Advanced Users Only)================================================oneclickssl -revoke 0100012698b9b97c www.mydomain.comoneclickssl -debug -revoke 0100012698b9b97c www.mydomain.com -natip 192.168.2.1Options:  -revoke  -sslport SSLPort  -voucheroption "Options"  -language LanguageCode  -natip NATIPAddress  -debug  -testurl WebServiceURL  -quietDescription:  -? or -help                - Display this help  Voucher                    - This is the GlobalSign OneClickSSL Voucher as                                provided by GlobalSign or an associated partner  DomainName                 - The website address and common name.  IPAddress                  - The IP address for the IIS SSL website binding.                               If omitted, DNS will be used to obtain this.    -revoke                    - Revoke a certificate based on Serial Number                                and domain name  -sslport SSLPort           - Optional SSL HTTP port number if not 443  -voucheroption "Options"   - Promotional voucher codes used to create trial                               certificates must be accompanied with a valid                               email address to allow additional instructions                                to be provided.  -language LanguageCode     - Specifies the output translation. Can be either                               en, fr, ja, nl, de, or es  -natip NATIPAddress        - The local IP address for NAT based networks.                               Only necessary if using a network translated IP  -siteid IISSiteNumber      - The ID number for the website in IIS. Use this                               if the site can not be automatically identified                                by the domain name.  -debug                     - Verbose output for debugging problems  -testurl WebServiceURL     - Allows the use of alternative web service URL  -quiet                     - Suppresses all output</value>  </data>  <data name="InvalidOperatingSystem" xml:space="preserve">    <value>Operating System Unsupported. Must be Windows Server 2003 SP1 or above.</value>  </data>  <data name="ParameterDomainNameInvalid" xml:space="preserve">    <value>Domain Name is not in the correct format</value>  </data>  <data name="ParameterIPAddressInvalid" xml:space="preserve">    <value>IP Address is not in the correct format</value>  </data>  <data name="ParametersAreInvalid" xml:space="preserve">    <value>Invalid or missing parameters</value>  </data>  <data name="ParameterSSLPortInvalid" xml:space="preserve">    <value>SSL Port is invalid or missing</value>  </data>  <data name="ParameterSSLPortNotInRange" xml:space="preserve">    <value>SSL Port is not in range</value>  </data>  <data name="ParameterTestWebServiceInvalid" xml:space="preserve">    <value>Test web service URL is invalid. It must be https based.</value>  </data>  <data name="ParameterVoucherInvalid" xml:space="preserve">    <value>Voucher or Serial Number Invalid</value>  </data>  <data name="ProcessingText" xml:space="preserve">    <value>GlobalSign OneClickSSL(tm) Installer v{0}           (c)GMO GlobalSign, 2012=============================================================================Use this application to redeem OneClickSSL Vouchers and automatically activateSSL security and the "secure padlock" for your website.OneClickSSL secure site activation in process.Do not close or navigate away from this page until completed...---------------------------------------------------------------</value>  </data>  <data name="RealCertificateFailedAPIConnection" xml:space="preserve">    <value>Failed to connect to real certificate service</value>  </data>  <data name="TestCertificateFailedAPIConnection" xml:space="preserve">    <value>Failed to connect to test certificate service</value>  </data>  <data name="UnableToConnectToIIS" xml:space="preserve">    <value>Unable to find domain. Failed to connect to IIS or IIS not installed</value>  </data>  <data name="UnableToFindDomainInIIS" xml:space="preserve">    <value>Unable to find domain in IIS</value>  </data>  <data name="UnableToSetSSLProperties" xml:space="preserve">    <value>Unable to configure IIS website with SSL certificate</value>  </data>  <data name="VoucherFailedAPIConnection" xml:space="preserve">    <value>Failed to connect to voucher check service</value>  </data>  <data name="ProcessComplete" xml:space="preserve">    <value>Done. Congratulations your website certificate has now been installed!</value>  </data>  <data name="ParameterLanguageCodeInvalid" xml:space="preserve">    <value>Language code can only be en, fr, ja, nl, de, or es</value>  </data>  <data name="ParameterNATIPAddressInvalid" xml:space="preserve">    <value>NAT IP Address is not in the correct format</value>  </data>  <data name="UnableToGenerateCSR" xml:space="preserve">    <value>Unable to generate a certificate request</value>  </data>  <data name="UnableToInstallCertificate" xml:space="preserve">    <value>Unable to install the certificate</value>  </data>  <data name="UnableToRegisterRootCertificate" xml:space="preserve">    <value>Unable to generate a certificate request</value>  </data>  <data name="UnableToRemoveCertificate" xml:space="preserve">    <value>Unable to remove the certificate</value>  </data>  <data name="FailedToRevokeCertificate" xml:space="preserve">    <value>Failed to revoke the certificate</value>  </data>  <data name="RevokeCertificateFailedAPIConnection" xml:space="preserve">    <value>Failed to connect to revocation service</value>  </data>  <data name="PerformingDomainVerification" xml:space="preserve">    <value>Performing domain verification check and Enrolling for an SSL certificate...</value>  </data>  <data name="PerformingRevocationVerification" xml:space="preserve">    <value>Performing domain verification check and SSL certificate status check...</value>  </data>  <data name="RevokingSSLCertificate" xml:space="preserve">    <value>Revoking SSL certificate and removing from the web site</value>  </data>  <data name="SendingSerialNumberAndDomain" xml:space="preserve">    <value>Sending Serial Number &amp; Domain details to the GlobalSign OneClickSSL service...</value>  </data>  <data name="SendingVoucherAndDomain" xml:space="preserve">    <value>Sending Voucher &amp; Domain details to the GlobalSign OneClickSSL service...</value>  </data>  <data name="SettingUpAndActivating" xml:space="preserve">    <value>Setting up SSL and activating secure web site...</value>  </data>  <data name="SetupSuccessful" xml:space="preserve">    <value>OneClickSSL secure site setup successful!</value>  </data>  <data name="SetupUnSuccessful" xml:space="preserve">    <value>We have been unable to install an SSL certificate.  We suggest that you run the install for a second time and use the debug mode to identify any obvious errors.The debug output is also a useful file for your support team.  Append "&gt;debugoutput.txt" to the command line to save the output to a txt file.  A help menu is available with oneclickssl -? or -help</value>  </data>  <data name="DNSSetToResolveInternally" xml:space="preserve">    <value>The DNS search for your domain has provided the same IP  address as your NAT setting.  This seems to indicate that you have an Internal  DNS server. Please modify the 'hosts' file on this server to point to the true  external DNS IP address for this installation to succeed.  The hosts file can   be found in the windows/system32/drivers/etc directory and must be edited in  must be edited in Administrator mode with Notepad or an equivalent editor.</value>  </data>  <data name="FormAgreement" xml:space="preserve">    <value>I have read and agree to the terms and conditionsof the OneClickSSL Subscriber Agreement</value>  </data>  <data name="FormAdvancedMode" xml:space="preserve">    <value>Advanced Mode</value>  </data>  <data name="FormDomainNameHelp" xml:space="preserve">    <value>e.g. www.yourdomain.com</value>  </data>  <data name="FormDomainNameTitle" xml:space="preserve">    <value>Domain Name</value>  </data>  <data name="FormEmailAddressHelp" xml:space="preserve">    <value>Sends instructions/errors by email</value>  </data>  <data name="FormEmailAddressTitle" xml:space="preserve">    <value>Email Address</value>  </data>  <data name="FormIntroDescription" xml:space="preserve">    <value>Use this application to redeem OneClickSSL vouchers and automatically activateSSL security and the "secure padlock" for your website.</value>  </data>  <data name="FormIntroTitle" xml:space="preserve">    <value>Redeem Vouchers</value>  </data>  <data name="FormProcessButton" xml:space="preserve">    <value>Activate SSL</value>  </data>  <data name="FormTitle" xml:space="preserve">    <value>GlobalSign OneClickSSL Installer</value>  </data>  <data name="FormVoucherCodeHelp" xml:space="preserve">    <value>e.g. AGB6542HDFS4355A</value>  </data>  <data name="FormVoucherCodeTitle" xml:space="preserve">    <value>Voucher</value>  </data>  <data name="FormAgreementLink" xml:space="preserve">    <value>Click here to view the Subscriber Agreement</value>  </data>  <data name="FormProcessRevokeButton" xml:space="preserve">    <value>Revoke Certificate</value>  </data>  <data name="FormSerialNumberHelp" xml:space="preserve">    <value>e.g. 11212b0523fa14b061f78f3401895810a59f</value>  </data>  <data name="FormSerialNumberTitle" xml:space="preserve">    <value>Serial Number</value>  </data>  <data name="FormAdvancedOptions" xml:space="preserve">    <value>Advanced Options</value>  </data> <data name="FormRevokeTitle" xml:space="preserve">    <value>Revoke</value>  </data>  <data name="FormShowDebugTitle" xml:space="preserve">    <value>Debug Mode</value>  </data>  <data name="FormNATIPAddressTitle" xml:space="preserve">    <value>NAT IP Address</value>  </data>  <data name="FormSSLPortTitle" xml:space="preserve">    <value>SSL Port</value>  </data>    <data name="FormSiteIdTitle" xml:space="preserve">    <value>IIS WebSite (SiteID)</value>  </data>    <data name="FormIPAddressTitle" xml:space="preserve">    <value>IP Address</value>  </data>  <data name="FormAdvancedOptionsHelp" xml:space="preserve">    <value>These options allow you to provide additional advanced level options for your SSL deployment or revocation.</value>  </data>  <data name="FormRevokeWarning" xml:space="preserve">    <value>Are you sure you wish to revoke the SSL certificate which belongs to this domain?If you do choose  to continue, then the process cannot be reversed and any relying parties who connect to this web site will be warned by their browser software that the web site certificate is no longer valid.  It is suggested that revocation is performed only for the loss/compromise of the private key associated with the SSL certificate or information within the certificate is deemed to be incorrect.</value>  </data>  <data name="FormErrorOccured" xml:space="preserve">    <value>An error occured. Click here for more information</value>  </data>  <data name="FormKeyInformationMissing" xml:space="preserve">    <value>You must provide all information before proceeding</value>  </data>  <data name="FormManualConfiguration" xml:space="preserve">    <value>Manual Configuration Mode</value>  </data>  <data name="ManualConfigurationPause" xml:space="preserve">    <value>The temporary certificate has been installed into the certificate store.  You may now perform any necessary manual processing steps.  Press OK to continue the process of applying for a Production certificate</value>  </data>  <data name="FollowingCertInstalled" xml:space="preserve">    <value>The following certificate will be installed</value>  </data>  <data name="InstallingCert" xml:space="preserve">    <value>Installing Certificate</value>  </data>  <data name="UnableGenCSR" xml:space="preserve">    <value>FAILED - Unabled to generate CSR:</value>  </data>  <data name="NewCSR" xml:space="preserve">    <value>Analysing and processing new CSR request</value>  </data>  <data name="CSRDisplay" xml:space="preserve">    <value>SUCCEEDED - CSR generated is as follows</value>  </data>  <data name="GenCSR" xml:space="preserve">    <value>Generating CSR (Certificate Signing Request)</value>  </data>  <data name="UnableInstallCert" xml:space="preserve">    <value>FAILED - Unable to install certificate.</value>  </data>  <data name="ValidatingCertInstallation" xml:space="preserve">    <value>Validating Certificate installation</value>  </data>  <data name="CleanUpTempCert" xml:space="preserve">    <value>Cleaning up the Temporary certificate</value>  </data>  <data name="StartingSetupProcess" xml:space="preserve">    <value>Starting the OneClickSSL Setup Process</value>  </data>  <data name="StartingRevokeProcess" xml:space="preserve">    <value>Starting the OneClickSSL Revoke Process</value>  </data>  <data name="HelpTextLinux" xml:space="preserve">    <value>GlobalSign OneClickSSL(tm) Installer v{0}           (c)GMO GlobalSign, 2012=============================================================================GlobalSign OneClickSSL(tm) Installer           (c)GMO GlobalSign, 2012=============================================================================Use this application to redeem OneClickSSL Vouchers and automatically activateSSL security and the "secure padlock" for your websiteUsage:    php oneclickssl.php -h  php oneclickssl.php -v Voucher -d DomainName [IPAddress] -o emailaddressActivate SSL Example(s):========================php oneclickssl.php -v AD34EF6700G67142 -d www.mydomain.com -o email@example.comphp oneclickssl.php -v NONUNIQUEVOUCHER -d www.mydomain.com -o j.doe@mydomain.comRevoke SSL Example(s): (For Advanced Users Only)================================================php oneclickssl.php -r -v 0100012698b9b97c -d www.mydomain.com -o email@domain.comOptions:  -r  -s SSLPort  -o "Options"  -l  LanguageCode  -testurl WebServiceURLDescription:  -h               - Display this help  -v Voucher       - This is the GlobalSign OneClickSSL Voucher as                      provided by GlobalSign or an associated partner  -d DomainName    - The website address and common name.  -r               - Revoke a certificate based on Serial Number                      and domain name  -s  Port         - Optional SSL HTTP port number if not 443  -o "Options"     - Promotional voucher codes used to create trial                     certificates must be accompanied with a valid                     email address to allow additional instructions                      to be provided.  -l LanguageCode  - Specifies the output translation. Can be either                     en, fr, ja, jp, nl, de, or es  -t WebServiceURL - Allows the use of alternative web service URL</value>  </data>  <data name="RollingBack" xml:space="preserve">    <value>An ERROR occured - Rolling back to the previous certificate</value>  </data>  <data name="AssigningProduction" xml:space="preserve">    <value>Assigning PRODUCTION certificate to the website</value>  </data>  <data name="AssigningTemporary" xml:space="preserve">    <value>Assigning Temporary certificate to the website</value>  </data>  <data name="ReceivingVoucherValCheck" xml:space="preserve">    <value>Receiving Voucher validation check response including a Phishing Check and domain Keyword analysis</value>  </data>  <data name="ReceivingSerialValCheck" xml:space="preserve">    <value>Receiving Serial Number validation check response...</value>  </data>  <data name="SendingTemp" xml:space="preserve">    <value>Sending Temporary certificate request...</value>  </data>  <data name="ReceivingTemp" xml:space="preserve">    <value>Receiving Temporary certificate response</value>  </data>  <data name="ReceivingProd" xml:space="preserve">    <value>Receiving PRODUCTION certificate response</value>  </data>  <data name="ReceivingRevoke" xml:space="preserve">    <value>Receiving revoke request response</value>  </data>  <data name="OrderIDInfo" xml:space="preserve">    <value>NOTE : This OrderID for the 'Temporary' certificate will be useful if you need to talk to our support team :</value>  </data>  <data name="SendingProd" xml:space="preserve">    <value>Sending PRODUCTION certificate request  </value>  </data>  <data name="CertRevoked" xml:space="preserve">    <value>Certificate Successfully revoked</value>  </data>  <data name="Success" xml:space="preserve">    <value>SUCCESS</value>  </data>  <data name="CertDisplay" xml:space="preserve">    <value>Certificate received as follows:</value>  </data>  <data name="Failure" xml:space="preserve">    <value>FAILED</value>  </data>  <data name="IntCertReceived" xml:space="preserve">    <value>Intermediate Certificate received as follows:</value>  </data>  <!-- DA Plugin -->  <data name="Save" xml:space="preserve">    <value>Save</value>  </data>  <data name="Cancel" xml:space="preserve">    <value>Cancel</value>  </data>  <data name="Default" xml:space="preserve">    <value>Default</value>  </data>  <data name="Username" xml:space="preserve">    <value>Username</value>  </data>  <data name="Password" xml:space="preserve">    <value>Password</value>  </data>  <data name="RevokeCert" xml:space="preserve">    <value>Requesting certificate revocation</value>  </data>  <data name="CheckIP" xml:space="preserve">    <value>Checking if this website runs on a dedicated/unique ip address</value>  </data>  <data name="CheckVoucher" xml:space="preserve">    <value>Contacting GlobalSign to verify domain and voucher details</value>  </data>  <data name="DoBackup" xml:space="preserve">    <value>Making a backup of the current certificate</value>  </data>  <data name="ProcessingTitle" xml:space="preserve">    <value>GlobalSign OneClickSSL Installer</value>  </data>  <data name="ProcessingDescription" xml:space="preserve">    <value>OneClickSSL secure site activation in progress, do not close or navigate away from this page until completed</value>  </data>  <data name="OrderError" xml:space="preserve">    <value>Error placing order</value>  </data>  <data name="StatusError" xml:space="preserve">    <value>Error while retrieving order status</value>  </data>  <data name="TestWindow" xml:space="preserve">    <value>Click to open a test window to check your secure site</value>  </data>  <data name="ShowDebug" xml:space="preserve">    <value>Show debug information</value>  </data>  <data name="FormObtainingVouchersTitle" xml:space="preserve">    <value>Obtaining OneClickSSL Vouchers</value>  </data>  <data name="FormObtainingVouchersDescription" xml:space="preserve">    <value>Customize the experience for domain owners. You have the ability to control the experience of domain owners and the methods by which they obtain OneClickSSL vouchers. Please change the URL below to a landing page of your own if you are a GlobalSign reseller. The URL is called when domain owners click on the 'No Voucher, Get one here' image from within their plugin.</value>  </data>  <data name="FormLandingPage" xml:space="preserve">    <value>Landing page URL</value>  </data>  </root>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FailedToFindExistingCertificate" xml:space="preserve">
+    <value>Failed to find existing certificate for renewal</value>
+  </data>
+  <data name="FailedToObtainRealCertificate" xml:space="preserve">
+    <value>Failed to retrieve a Production certificate</value>
+  </data>
+  <data name="FailedToObtainTestCertificate" xml:space="preserve">
+    <value>Failed to retrieve a 'Temporary' certificate</value>
+  </data>
+  <data name="HelpText" xml:space="preserve">
+    <value>GlobalSign OneClickSSL(tm) Installer v{0}           (c)GMO GlobalSign, 2012
+=============================================================================
+Use this application to redeem OneClickSSL Vouchers and automatically activate
+SSL security and the "secure padlock" for your website
+
+Usage:
+  
+  OneClickSSL -? | -help
+  OneClickSSL [options] Voucher DomainName [IPAddress]
+
+Activate SSL Example(s):
+========================
+oneclickssl AD34EF6700G67142 www.mydomain.com
+oneclickssl AD34EF6700G67142 www.mydomain.com -natip 192.168.2.1 -debug
+oneclickssl NONUNIQUEVOUCHER www.mydomain.com -voucheroption j.doe@mydomain.com
+
+Revoke SSL Example(s): (For Advanced Users Only)
+================================================
+oneclickssl -revoke 0100012698b9b97c www.mydomain.com
+oneclickssl -debug -revoke 0100012698b9b97c www.mydomain.com -natip 192.168.2.1
+
+Options:
+  -revoke
+  -sslport SSLPort
+  -voucheroption "Options"
+  -language LanguageCode
+  -natip NATIPAddress
+  -debug
+  -testurl WebServiceURL
+  -quiet
+
+Description:
+  -? or -help                - Display this help
+  Voucher                    - This is the GlobalSign OneClickSSL Voucher as 
+                               provided by GlobalSign or an associated partner
+  DomainName                 - The website address and common name.
+  IPAddress                  - The IP address for the IIS SSL website binding.
+                               If omitted, DNS will be used to obtain this.
+  
+  -revoke                    - Revoke a certificate based on Serial Number 
+                               and domain name
+  -sslport SSLPort           - Optional SSL HTTP port number if not 443
+  -voucheroption "Options"   - Promotional voucher codes used to create trial
+                               certificates must be accompanied with a valid
+                               email address to allow additional instructions 
+                               to be provided.
+  -language LanguageCode     - Specifies the output translation. Can be either
+                               en, fr, ja, nl, de, or es
+  -natip NATIPAddress        - The local IP address for NAT based networks.
+                               Only necessary if using a network translated IP
+  -siteid IISSiteNumber      - The ID number for the website in IIS. Use this
+                               if the site can not be automatically identified 
+                               by the domain name.
+  -debug                     - Verbose output for debugging problems
+  -testurl WebServiceURL     - Allows the use of alternative web service URL
+  -quiet                     - Suppresses all output</value>
+  </data>
+  <data name="InvalidOperatingSystem" xml:space="preserve">
+    <value>Operating System Unsupported. Must be Windows Server 2003 SP1 or above.</value>
+  </data>
+  <data name="ParameterDomainNameInvalid" xml:space="preserve">
+    <value>Domain Name is not in the correct format</value>
+  </data>
+  <data name="ParameterIPAddressInvalid" xml:space="preserve">
+    <value>IP Address is not in the correct format</value>
+  </data>
+  <data name="ParametersAreInvalid" xml:space="preserve">
+    <value>Invalid or missing parameters</value>
+  </data>
+  <data name="ParameterSSLPortInvalid" xml:space="preserve">
+    <value>SSL Port is invalid or missing</value>
+  </data>
+  <data name="ParameterSSLPortNotInRange" xml:space="preserve">
+    <value>SSL Port is not in range</value>
+  </data>
+  <data name="ParameterTestWebServiceInvalid" xml:space="preserve">
+    <value>Test web service URL is invalid. It must be https based.</value>
+  </data>
+  <data name="ParameterVoucherInvalid" xml:space="preserve">
+    <value>Voucher or Serial Number Invalid</value>
+  </data>
+  <data name="ProcessingText" xml:space="preserve">
+    <value>GlobalSign OneClickSSL(tm) Installer v{0}           (c)GMO GlobalSign, 2012
+=============================================================================
+Use this application to redeem OneClickSSL Vouchers and automatically activate
+SSL security and the "secure padlock" for your website.
+
+OneClickSSL secure site activation in process.
+Do not close or navigate away from this page until completed...
+---------------------------------------------------------------</value>
+  </data>
+  <data name="RealCertificateFailedAPIConnection" xml:space="preserve">
+    <value>Failed to connect to real certificate service</value>
+  </data>
+  <data name="TestCertificateFailedAPIConnection" xml:space="preserve">
+    <value>Failed to connect to test certificate service</value>
+  </data>
+  <data name="UnableToConnectToIIS" xml:space="preserve">
+    <value>Unable to find domain. Failed to connect to IIS or IIS not installed</value>
+  </data>
+  <data name="UnableToFindDomainInIIS" xml:space="preserve">
+    <value>Unable to find domain in IIS</value>
+  </data>
+  <data name="UnableToSetSSLProperties" xml:space="preserve">
+    <value>Unable to configure IIS website with SSL certificate</value>
+  </data>
+  <data name="VoucherFailedAPIConnection" xml:space="preserve">
+    <value>Failed to connect to voucher check service</value>
+  </data>
+  <data name="ProcessComplete" xml:space="preserve">
+    <value>Done. Congratulations your website certificate has now been installed!</value>
+  </data>
+  <data name="ParameterLanguageCodeInvalid" xml:space="preserve">
+    <value>Language code can only be en, fr, ja, nl, de, or es</value>
+  </data>
+  <data name="ParameterNATIPAddressInvalid" xml:space="preserve">
+    <value>NAT IP Address is not in the correct format</value>
+  </data>
+  <data name="UnableToGenerateCSR" xml:space="preserve">
+    <value>Unable to generate a certificate request</value>
+  </data>
+  <data name="UnableToInstallCertificate" xml:space="preserve">
+    <value>Unable to install the certificate</value>
+  </data>
+  <data name="UnableToRegisterRootCertificate" xml:space="preserve">
+    <value>Unable to generate a certificate request</value>
+  </data>
+  <data name="UnableToRemoveCertificate" xml:space="preserve">
+    <value>Unable to remove the certificate</value>
+  </data>
+  <data name="FailedToRevokeCertificate" xml:space="preserve">
+    <value>Failed to revoke the certificate</value>
+  </data>
+  <data name="RevokeCertificateFailedAPIConnection" xml:space="preserve">
+    <value>Failed to connect to revocation service</value>
+  </data>
+  <data name="PerformingDomainVerification" xml:space="preserve">
+    <value>Performing domain verification check and Enrolling for an SSL certificate...</value>
+  </data>
+  <data name="PerformingRevocationVerification" xml:space="preserve">
+    <value>Performing domain verification check and SSL certificate status check...</value>
+  </data>
+  <data name="RevokingSSLCertificate" xml:space="preserve">
+    <value>Revoking SSL certificate and removing from the web site</value>
+  </data>
+  <data name="SendingSerialNumberAndDomain" xml:space="preserve">
+    <value>Sending Serial Number &amp; Domain details to the GlobalSign OneClickSSL service...</value>
+  </data>
+  <data name="SendingVoucherAndDomain" xml:space="preserve">
+    <value>Sending Voucher &amp; Domain details to the GlobalSign OneClickSSL service...</value>
+  </data>
+  <data name="SettingUpAndActivating" xml:space="preserve">
+    <value>Setting up SSL and activating secure web site...</value>
+  </data>
+  <data name="SetupSuccessful" xml:space="preserve">
+    <value>OneClickSSL secure site setup successful!</value>
+  </data>
+  <data name="SetupUnSuccessful" xml:space="preserve">
+    <value>We have been unable to install an SSL certificate.  We suggest that you run the install for a second time and use the debug mode to identify any obvious errors.The debug output is also a useful file for your support team.  
+Append "&gt;debugoutput.txt" to the command line to save the output to a txt file.  
+A help menu is available with oneclickssl -? or -help</value>
+  </data>
+  <data name="DNSSetToResolveInternally" xml:space="preserve">
+    <value>The DNS search for your domain has provided the same IP
+  address as your NAT setting.  This seems to indicate that you have an Internal  DNS server. Please modify the 'hosts' file on this server to point to the true  external DNS IP address for this installation to succeed.  The hosts file can   be found in the windows/system32/drivers/etc directory and must be edited in
+  must be edited in Administrator mode with Notepad or an equivalent editor.</value>
+  </data>
+  <data name="FormAgreement" xml:space="preserve">
+    <value>I have read and agree to the terms and conditions
+of the OneClickSSL Subscriber Agreement</value>
+  </data>
+  <data name="FormAdvancedMode" xml:space="preserve">
+    <value>Advanced Mode</value>
+  </data>
+  <data name="FormDomainNameHelp" xml:space="preserve">
+    <value>e.g. www.yourdomain.com</value>
+  </data>
+  <data name="FormDomainNameTitle" xml:space="preserve">
+    <value>Domain Name</value>
+  </data>
+  <data name="FormEmailAddressHelp" xml:space="preserve">
+    <value>Sends instructions/errors by email</value>
+  </data>
+  <data name="FormEmailAddressTitle" xml:space="preserve">
+    <value>Email Address</value>
+  </data>
+  <data name="FormIntroDescription" xml:space="preserve">
+    <value>Use this application to redeem OneClickSSL vouchers and automatically activate
+SSL security and the "secure padlock" for your website.</value>
+  </data>
+  <data name="FormIntroTitle" xml:space="preserve">
+    <value>Redeem Vouchers</value>
+  </data>
+  <data name="FormProcessButton" xml:space="preserve">
+    <value>Activate SSL</value>
+  </data>
+  <data name="FormTitle" xml:space="preserve">
+    <value>GlobalSign OneClickSSL Installer</value>
+  </data>
+  <data name="FormVoucherCodeHelp" xml:space="preserve">
+    <value>e.g. AGB6542HDFS4355A</value>
+  </data>
+  <data name="FormVoucherCodeTitle" xml:space="preserve">
+    <value>Voucher</value>
+  </data>
+  <data name="FormAgreementLink" xml:space="preserve">
+    <value>Click here to view the Subscriber Agreement</value>
+  </data>
+  <data name="FormProcessRevokeButton" xml:space="preserve">
+    <value>Revoke Certificate</value>
+  </data>
+  <data name="FormSerialNumberHelp" xml:space="preserve">
+    <value>e.g. 11212b0523fa14b061f78f3401895810a59f</value>
+  </data>
+  <data name="FormSerialNumberTitle" xml:space="preserve">
+    <value>Serial Number</value>
+  </data>
+  <data name="FormAdvancedOptions" xml:space="preserve">
+    <value>Advanced Options</value>
+  </data>
+ <data name="FormRevokeTitle" xml:space="preserve">
+    <value>Revoke</value>
+  </data>
+  <data name="FormShowDebugTitle" xml:space="preserve">
+    <value>Debug Mode</value>
+  </data>
+  <data name="FormNATIPAddressTitle" xml:space="preserve">
+    <value>NAT IP Address</value>
+  </data>
+  <data name="FormSSLPortTitle" xml:space="preserve">
+    <value>SSL Port</value>
+  </data>  
+  <data name="FormSiteIdTitle" xml:space="preserve">
+    <value>IIS WebSite (SiteID)</value>
+  </data>  
+  <data name="FormIPAddressTitle" xml:space="preserve">
+    <value>IP Address</value>
+  </data>
+  <data name="FormAdvancedOptionsHelp" xml:space="preserve">
+    <value>These options allow you to provide additional advanced level options for your SSL deployment or revocation.</value>
+  </data>
+  <data name="FormRevokeWarning" xml:space="preserve">
+    <value>Are you sure you wish to revoke the SSL certificate which belongs to this domain?
+If you do choose  to continue, then the process cannot be reversed and any relying parties who connect to this web site will be warned by their browser software that the web site certificate is no longer valid.  It is suggested that revocation is performed only for the loss/compromise of the private key associated with the SSL certificate or information within the certificate is deemed to be incorrect.</value>
+  </data>
+  <data name="FormErrorOccured" xml:space="preserve">
+    <value>An error occured. Click here for more information</value>
+  </data>
+  <data name="FormKeyInformationMissing" xml:space="preserve">
+    <value>You must provide all information before proceeding</value>
+  </data>
+  <data name="FormManualConfiguration" xml:space="preserve">
+    <value>Manual Configuration Mode</value>
+  </data>
+  <data name="ManualConfigurationPause" xml:space="preserve">
+    <value>The temporary certificate has been installed into the certificate store.  You may now perform any necessary manual processing steps.  Press OK to continue the process of applying for a Production certificate</value>
+  </data>
+  <data name="FollowingCertInstalled" xml:space="preserve">
+    <value>The following certificate will be installed</value>
+  </data>
+  <data name="InstallingCert" xml:space="preserve">
+    <value>Installing Certificate</value>
+  </data>
+  <data name="UnableGenCSR" xml:space="preserve">
+    <value>FAILED - Unabled to generate CSR:</value>
+  </data>
+  <data name="NewCSR" xml:space="preserve">
+    <value>Analysing and processing new CSR request</value>
+  </data>
+  <data name="CSRDisplay" xml:space="preserve">
+    <value>SUCCEEDED - CSR generated is as follows</value>
+  </data>
+  <data name="GenCSR" xml:space="preserve">
+    <value>Generating CSR (Certificate Signing Request)</value>
+  </data>
+  <data name="UnableInstallCert" xml:space="preserve">
+    <value>FAILED - Unable to install certificate.</value>
+  </data>
+  <data name="ValidatingCertInstallation" xml:space="preserve">
+    <value>Validating Certificate installation</value>
+  </data>
+  <data name="CleanUpTempCert" xml:space="preserve">
+    <value>Cleaning up the Temporary certificate</value>
+  </data>
+  <data name="StartingSetupProcess" xml:space="preserve">
+    <value>Starting the OneClickSSL Setup Process</value>
+  </data>
+  <data name="StartingRevokeProcess" xml:space="preserve">
+    <value>Starting the OneClickSSL Revoke Process</value>
+  </data>
+  <data name="HelpTextLinux" xml:space="preserve">
+    <value>GlobalSign OneClickSSL(tm) Installer v{0}           (c)GMO GlobalSign, 2012
+=============================================================================
+GlobalSign OneClickSSL(tm) Installer           (c)GMO GlobalSign, 2012
+=============================================================================
+Use this application to redeem OneClickSSL Vouchers and automatically activate
+SSL security and the "secure padlock" for your website
+
+Usage:
+  
+  php oneclickssl.php -h
+  php oneclickssl.php -v Voucher -d DomainName [IPAddress] -o emailaddress
+
+Activate SSL Example(s):
+========================
+php oneclickssl.php -v AD34EF6700G67142 -d www.mydomain.com -o email@example.com
+php oneclickssl.php -v NONUNIQUEVOUCHER -d www.mydomain.com -o j.doe@mydomain.com
+
+Revoke SSL Example(s): (For Advanced Users Only)
+================================================
+php oneclickssl.php -r -v 0100012698b9b97c -d www.mydomain.com -o email@domain.com
+
+
+Options:
+  -r
+  -s SSLPort
+  -o "Options"
+  -l  LanguageCode
+  -testurl WebServiceURL
+
+
+Description:
+  -h               - Display this help
+  -v Voucher       - This is the GlobalSign OneClickSSL Voucher as 
+                     provided by GlobalSign or an associated partner
+  -d DomainName    - The website address and common name.
+  -r               - Revoke a certificate based on Serial Number 
+                     and domain name
+  -s  Port         - Optional SSL HTTP port number if not 443
+  -o "Options"     - Promotional voucher codes used to create trial
+                     certificates must be accompanied with a valid
+                     email address to allow additional instructions 
+                     to be provided.
+  -l LanguageCode  - Specifies the output translation. Can be either
+                     en, fr, ja, jp, nl, de, or es
+  -t WebServiceURL - Allows the use of alternative web service URL</value>
+  </data>
+  <data name="RollingBack" xml:space="preserve">
+    <value>An ERROR occured - Rolling back to the previous certificate</value>
+  </data>
+  <data name="AssigningProduction" xml:space="preserve">
+    <value>Assigning PRODUCTION certificate to the website</value>
+  </data>
+  <data name="AssigningTemporary" xml:space="preserve">
+    <value>Assigning Temporary certificate to the website</value>
+  </data>
+  <data name="ReceivingVoucherValCheck" xml:space="preserve">
+    <value>Receiving Voucher validation check response including a Phishing Check and domain Keyword analysis</value>
+  </data>
+  <data name="ReceivingSerialValCheck" xml:space="preserve">
+    <value>Receiving Serial Number validation check response...</value>
+  </data>
+  <data name="SendingTemp" xml:space="preserve">
+    <value>Sending Temporary certificate request...</value>
+  </data>
+  <data name="ReceivingTemp" xml:space="preserve">
+    <value>Receiving Temporary certificate response</value>
+  </data>
+  <data name="ReceivingProd" xml:space="preserve">
+    <value>Receiving PRODUCTION certificate response</value>
+  </data>
+  <data name="ReceivingRevoke" xml:space="preserve">
+    <value>Receiving revoke request response</value>
+  </data>
+  <data name="OrderIDInfo" xml:space="preserve">
+    <value>NOTE : This OrderID for the 'Temporary' certificate will be useful if you need to talk to our support team :</value>
+  </data>
+  <data name="SendingProd" xml:space="preserve">
+    <value>Sending PRODUCTION certificate request  </value>
+  </data>
+  <data name="CertRevoked" xml:space="preserve">
+    <value>Certificate Successfully revoked</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>SUCCESS</value>
+  </data>
+  <data name="CertDisplay" xml:space="preserve">
+    <value>Certificate received as follows:</value>
+  </data>
+  <data name="Failure" xml:space="preserve">
+    <value>FAILED</value>
+  </data>
+  <data name="IntCertReceived" xml:space="preserve">
+    <value>Intermediate Certificate received as follows:</value>
+  </data>
+  <!-- DA Plugin -->
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="RevokeCert" xml:space="preserve">
+    <value>Requesting certificate revocation</value>
+  </data>
+  <data name="CheckIp" xml:space="preserve">
+    <value>Checking if this website runs on a dedicated/unique ip address</value>
+  </data>
+  <data name="CheckVoucher" xml:space="preserve">
+    <value>Contacting GlobalSign to verify domain and voucher details</value>
+  </data>
+  <data name="DoBackup" xml:space="preserve">
+    <value>Making a backup of the current certificate</value>
+  </data>
+  <data name="ProcessingTitle" xml:space="preserve">
+    <value>GlobalSign OneClickSSL Installer</value>
+  </data>
+  <data name="ProcessingDescription" xml:space="preserve">
+    <value>OneClickSSL secure site activation in progress, do not close or navigate away from this page until completed</value>
+  </data>
+  <data name="OrderError" xml:space="preserve">
+    <value>Error placing order</value>
+  </data>
+  <data name="StatusError" xml:space="preserve">
+    <value>Error while retrieving order status</value>
+  </data>
+  <data name="TestWindow" xml:space="preserve">
+    <value>Click to open a test window to check your secure site</value>
+  </data>
+  <data name="ShowDebug" xml:space="preserve">
+    <value>Show debug information</value>
+  </data>
+  <data name="FormObtainingVouchersTitle" xml:space="preserve">
+    <value>Obtaining OneClickSSL Vouchers</value>
+  </data>
+  <data name="FormObtainingVouchersDescription" xml:space="preserve">
+    <value>Customize the experience for domain owners. You have the ability to control the experience of domain owners and the methods by which they obtain OneClickSSL vouchers. Please change the URL below to a landing page of your own if you are a GlobalSign reseller. The URL is called when domain owners click on the 'No Voucher, Get one here' image from within their plugin.</value>
+  </data>
+  <data name="FormLandingPage" xml:space="preserve">
+    <value>Landing page URL</value>
+  </data>
+  
+</root>
