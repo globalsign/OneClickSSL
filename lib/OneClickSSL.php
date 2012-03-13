@@ -197,7 +197,7 @@ class OneClickSSL
         $restoreBackupBag = array('restoreBackup' => 'restoreBackup');
 
         $workflow = array(
-            'checkIP'       => array(
+            'checkIp'       => array(
                 'func'   => 'checkIp',
                 'blob'   => 'Checking the IP Address'),
             'checkVoucher'  => array(
