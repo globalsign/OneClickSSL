@@ -159,6 +159,13 @@ $certData = new CertificateData('www.example.com',
                                 'my.mail@example.com',
                                 '5daytrialDV');
   
+// Enable the Remote Administration Agent(RAA) if enabled for your platform
+//$certData->setRaa(1);
+
+// The username that should be reffered to by the Remote Administration Agent(RAA)
+// You only need to provide this information in the initial order when the RAA is enabled
+//$certData->setUsr('username');
+  
 $oneclick = OneClickSSL::init($certData, new NginxOneClick());
 
 // How much output do you want?
