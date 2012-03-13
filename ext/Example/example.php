@@ -166,7 +166,7 @@ $certData = new CertificateData('www.example.com',
 // You only need to provide this information in the initial order when the RAA is enabled
 //$certData->setUsr('username');
   
-$oneclick = OneClickSSL::init($certData, new NginxOneClick());
+$oneclick = OneClickSSL::init($certData, new ExampleOneClick());
 
 // How much output do you want?
 $oneclick->output()->debug()->setLevel(1);
