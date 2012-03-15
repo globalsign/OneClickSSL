@@ -470,7 +470,7 @@ class OneClickSSL
         $certHash = $this->_plugin->install(
             $this->service()->getPrivateKey(),
             $this->service()->getRealCertificate(),
-            $this->service()->getRealCaCert
+            $this->service()->getRealCaCert()
         );
         return ($certHash) ? $this->service()->checkInstall($certHash) : false;
     }
