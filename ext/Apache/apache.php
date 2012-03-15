@@ -40,181 +40,312 @@
 * @link       http://www.globalsign.com/ssl/oneclickssl/
 */
 
-// Debian
-define("PPATH", "/etc/ssl/private/");
-define("CPATH", "/etc/ssl/certs/");
-define("STATUSPATH", "./");
-
-define("CONFIGDIR", "/etc/apache2/sites-enabled/");
-
-define("SERVER", "https://gas-eval1.globalsign.com:10001/vc/ws/OneClickOrder?wsdl");
-//define("SERVER", "https://system.globalsign.com/vc/ws/OneClickOrder?wsdl");
-
-//define("PLATFORMID", "159083740800001PHP");
-define("PLATFORMID", "642889112500001");// centos line break problem
+define("PLATFORMID", "159083740800001PHP");
 define("KEYALGORITHM", "RSA");
 
-define("STATUSPATH", "./");
+// Read/write permissions for root only (chmod 600)
+define("CERTDIR", "/etc/ssl/oneclickssl/");
 
-require("oneclick.php");
+require("../../lib/OneClickSSL.php");
 
-class ApacheOneClick extends OneClickSSL {
+class ApacheOneClick implements OneClickSSLPlugin
+{
+    protected $_output;
+
+    protected $_domain;
+
+    /**
+     * Check for unique ip address
+     */    
+    public function checkIp() {
+        $ip = gethostbyname($this->_domain);
+        exec("apache2ctl -D DUMP_VHOSTS 2>/dev/null | grep '". $ip .":80'", $vhostSites, $vhostSitesResult);
+        if ($vhostSitesResult == 0 && count($vhostSites) === 1) {
+            $this->debug(1, "This website is running on a dedicated IP address: ".$ip);
+            return true;
+            
+        } else {
+            $this->debug(1, "This website is not running on a dedicated IP address, please configure a dedicated ip first!");
+            return false;
+        }
+    }
+    
     /**
      * Install the certificate
      */
-    public function doInstall($privateKey, $orderResult)
+    public function install($privateKey, $certificate, $cacert = null)
     {
-        $this->debug(1, "Preparing certificate installation for ". $this->_domain);
-
-        // We can't install the certificates because the order failed
-        if ($orderResult->Response->OrderResponseHeader->SuccessCode <> 0) {
-            echo "We can't install the certificates because the order failed". PHP_EOL;
-            return false;
-        }
-
-        // Extract the certificate and the intermediates from the test order
-        $cacert = '';
-        $certificate = $orderResult->Response->OneClickOrderDetail->Fulfillment->ServerCertificate->X509Cert;
-        foreach ($orderResult->Response->OneClickOrderDetail->Fulfillment->CACertificates->CACertificate as $value){
-            if ($value->CACertType == "INTER"){
-                $cacert .= (string)$value->CACert;
-            }
-        }
-
+        $this->debug(1, "Preparing Apache certificate installation for ". $this->_domain);
+                        
         // Just some debugging information
         $this->debug(1, "Exporting certificates to the file system");
         $this->debug(2, "Certificate:\n". $certificate);
         $this->debug(2, "Intermediates:\n". $cacert);
 
-        // Where do we store the certificates
-        // - You can change this path at the top of this file
-        $privkeyfile = PPATH . $this->_domain . ".key";
-        $certfile = CPATH . $this->_domain . ".crt";
-        $cacertfile = CPATH . $this->_domain . "_ca.crt";
-
         // Export the certificates to the filesystem
-        openssl_pkey_export_to_file($privateKey,$privkeyfile);
-        openssl_x509_export_to_file($certificate,$certfile);
-        openssl_x509_export_to_file($cacert,$cacertfile);
-
-        // Check the Apache configuration for mod_ssl or mod_gnutls
-        // - Should we really do this every time?
-        $sslModule = shell_exec("/usr/sbin/apache2ctl -D DUMP_MODULES");
-        if (!preg_match("/ssl_module|gnutls_module/i", $sslModule)) {
-            echo "Please make sure your Apache webserver is correctly configured". PHP_EOL;
+        openssl_pkey_export_to_file($privateKey, CERTDIR . $this->_domain . ".key");
+        openssl_x509_export_to_file($certificate, CERTDIR . $this->_domain . ".crt");
+        if (strlen($cacert) > 10) {
+            openssl_x509_export_to_file($cacert, CERTDIR . $this->_domain . "_ca.crt");
         }
 
+        // Set rw file permissions for root only
+        chmod(CERTDIR . $this->_domain . ".key", 600);
+        chmod(CERTDIR . $this->_domain . ".crt", 600);
+        chmod(CERTDIR . $this->_domain . "_ca.crt", 600);
+        
         // Reuqest a parsable list of virtual hosts that match or domain
-        $vhostSites = shell_exec("apache2ctl -D DUMP_VHOSTS | grep ". $this->_domain);
-        if (preg_match("/\(([^\)]*)\)/i", $vhostSites, $file)) {
-            $this->debug(1, "The website looks to be defined in: ". $file[1]);
+        exec("apache2ctl -D DUMP_VHOSTS 2>/dev/null | grep '". gethostbyname($this->_domain) ."'", $vhostSites, $vhostSitesResult);
+        if ($vhostSitesResult == 0 && preg_match_all("/([^\s]*)\s*[^\s]*\s\(([^:]*)/i", implode($vhostSites, PHP_EOL), $file)) {
+            $ip = gethostbyname($this->_domain);
+                       
+            if ($key = array_search($ip .':443', $file[1])) {
+                $vhostConfigFile = $file[2][$key];
+                
+                $this->debug(1, "We found an SSL configured virtual host for this website");
+            } else {
+                $vhostConfigFile = $file[2][0];
+            }
+            
+            $this->debug(1, "This website is configured in: ". $vhostConfigFile);
+            if (!file_exists($vhostConfigFile)) {
+                $this->debug(1, "Can't open configuration file");
+                return false;
+            }
+            
+        } else {
+            $this->debug(1, "Can't find configuration file for ". $this->_domain);
+            return false;
         }
 
-        // Do backup the current certificates
-        $this->doReload();
+        // Updating in memory first
+        $newConfig = "";
+        $vhostSsl = false;
 
-        return true;
+        // Create backup from config file
+        copy($vhostConfigFile, '/tmp/'. basename($vhostConfigFile) .'.bak');
+        
+        // Open Apache config, and walk through it line by line
+        $handle = @fopen($vhostConfigFile, "r");
+        if ($handle) {
+            while (($buffer = fgets($handle, 4096)) !== false) {               
+                // Start of config block
+                if (strstr($buffer, "<VirtualHost")) {
+                    $vhost = true;
+                    $vhostData = array();
+                    $vhostBlock = "";
+                }
+                
+                // Check which vhost and if we need to update
+                if ($vhost) {
+                    if (strstr($buffer, $ip)) {
+                        $vhostData['ip'] = $ip;
+                    }
+                    if (strstr($buffer,$this->_domain)) {
+                        $vhostData['domain'] = $this->_domain;
+                    }
+                    
+                    if (array_key_exists('domain', $vhostData) 
+                        && $vhostData['domain'] === $this->_domain) {
+                    
+                        $lineKeys = explode(' ', trim($buffer), 2);
+                        switch(trim($lineKeys[0])) {
+                            // Turn SSL on
+                            case "SSLEngine":
+                                $vhostSsl = true;
+                                $vhostBlock .= "\tSSLEngine on" .PHP_EOL;
+                                break;
+                            
+                            // Certificate
+                            case "SSLCertificateFile":
+                                $vhostSsl = true;
+                                $vhostBlock .= "\tSSLCertificateFile ". CERTDIR . $this->_domain . ".crt" .PHP_EOL;
+                                break;
+                            
+                            // Private key
+                            case "SSLCertificateKeyFile":
+                                $vhostSsl = true;
+                                $vhostBlock .= "\tSSLCertificateKeyFile ". CERTDIR . $this->_domain . ".key" .PHP_EOL;
+                                break;
+                            
+                            // Intermediate certificate(s) 
+                            case "SSLCertificateChainFile":
+                                // Ignore here if it's already set we add it later
+                                $vhostSsl = true;
+                                break;
+
+                            default:
+                                $vhostBlock .= $buffer;
+                        }
+                    } else {
+                        $vhostBlock .= $buffer;
+                    }
+                }
+                
+                if (!$vhost) {
+                    // We don't want to change this part but don't want to loose it either
+                    $newConfig .= $buffer;
+                }
+                // End of config block
+                if (strstr($buffer, "</VirtualHost>")) {
+                    $vhost = false;
+                    
+                    // Remove </VirtualHost> to add SSL config
+                    $vhostBlock = substr(trim($vhostBlock), 0, -14);
+                    
+                    // Add intermediate certificate(s) (also if not defined before)
+                    if ($vhostSsl && strlen($cacert) > 10) {
+                        $vhostBlock .= "\tSSLCertificateChainFile ". CERTDIR . $this->_domain . "_ca.crt" .PHP_EOL;
+                    }
+                    
+                    // Close virtualhost and include config
+                    $vhostBlock .= "</VirtualHost>" .PHP_EOL;
+                    $newConfig .= $vhostBlock;
+                    unset($vhostBlock);
+                }
+            }
+        }
+        
+        // We did not found any ssl enabled virtual host, copy the host we found 
+        if (!$vhostSsl && array_key_exists($ip, $vhosts)) {
+            $newConfig .= "<IfModule mod_ssl.c>" .PHP_EOL;
+            // Copy http config and change port number
+            $newConfig .= preg_replace("/^(<VirtualHost\s[^:]*):80>/i", "\${1}:443>", $vhosts[$ip]);
+            $newConfig .= "\tSSLEngine on" .PHP_EOL;
+            $newConfig .= "\tSSLCertificateFile ". CERTDIR . $this->_domain . ".crt" .PHP_EOL;
+            $newConfig .= "\tSSLCertificateKeyFile ". CERTDIR . $this->_domain . ".key" .PHP_EOL;
+            if (strlen($cacert) > 10) {
+                $newConfig .= "\tSSLCertificateChainFile ". CERTDIR . $this->_domain . "_ca.crt" .PHP_EOL;
+            }
+            $newConfig .= "\tSSLProtocol -ALL +SSLv3 +TLSv1" .PHP_EOL;
+            $newConfig .= "\tSSLCipherSuite ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM:-LOW:-SSLv2:-EXP" .PHP_EOL;
+            $newConfig .= "</VirtualHost>" .PHP_EOL;
+            $newConfig .= "</IfModule>" .PHP_EOL;
+        }
+        
+        // Close config file
+        fclose($handle);
+
+        // Write the new config file to disk
+        file_put_contents($vhostConfigFile, $newConfig);
+        
+        // Reload Apache
+        exec("/etc/init.d/apache2 reload", $configReload, $configReloadResult);
+        
+        if ($configReloadResult <> 0) {
+            $this->debug(1, "Error while reloading Apache configuration");
+            $this->debug(2, implode($configReload, PHP_EOL));
+        
+            // Restore and delete backup
+            copy('/tmp/'. basename($vhostConfigFile) .'.bak', $vhostConfigFile);
+            unlink('/tmp/'. basename($vhostConfigFile) .'.bak');
+            return false;
+        }
+
+        // Delete backup
+        unlink('/tmp/'. basename($vhostConfigFile) .'.bak');
+        
+        // Return certificate for installation check
+        return $certificate;
     }
 
+    /**
+     * Set the domain for the certificate
+     *
+     * @param string $domain  The domain for the certificate
+     *
+     * @return null
+     */
+    public function setDomain($domain)
+    {
+        $this->_domain = $domain;
+    }
+    
     /**
      * Back the current certificates
-     */
-    public function doBackup()
+     */     
+    public function backup()
     {
-        // Where do we store the certificates
-        // - You can change this path at the top of this file
-        $privkeyfile = PPATH . $this->_domain . ".key";
-        $certfile = CPATH . $this->_domain . ".crt";
-        $cacertfile = CPATH . $this->_domain . "_ca.crt";
-
-        // Make a backup of any extisting certificates
-        if (file_exists($privkeyfile)) {
-            if (!copy($privkeyfile, $privkeyfile . '_bak')) {
-                echo "Failed to backup private key: ". $privkeyfile;
-            }
-        }
-        if (file_exists($certfile)) {
-            if (!copy($certfile, $certfile . '_bak')) {
-                echo "Failed to backup certificate: ". $certfile;
-            }
-        }
-        if (file_exists($cacertfile)) {
-            if (!copy($cacertfile, $cacertfile . '_bak')) {
-                echo "Failed to backup CA certifiactes: ". $cacertfile;
-            }
+        if (@copy(CERTDIR . $this->_domain .'.*', CERTDIR .'backup/')) {
+            return true;
+        } else {
+            return false;
         }
     }
-
+	
     /**
      * Restore the backup certificates
-     */
+     */     
     public function restoreBackup()
     {
-        // Where do we store the certificates
-        // - You can change this path at the top of this file
-        $privkeyfile = PPATH . $this->_domain . ".key";
-        $certfile = CPATH . $this->_domain . ".crt";
-        $cacertfile = CPATH . $this->_domain . "_ca.crt";
-
-        // Make a backup of any extisting certificates
-        if (file_exists($privkeyfile)) {
-            if (!copy($privkeyfile. '_bak', $privkeyfile)) {
-                echo "Failed to restore private key: ". $privkeyfile;
-            }
-        }
-        if (file_exists($certfile)) {
-            if (!copy($certfile. '_bak', $certfile)) {
-                echo "Failed to restore certificate: ". $certfile;
-            }
-        }
-        if (file_exists($cacertfile)) {
-            if (!copy($cacertfile. '_bak', $cacertfile)) {
-                echo "Failed to restore CA certifiactes: ". $cacertfile;
-            }
+        if (@copy(CERTDIR .'backup/'. $this->_domain .'.*', CERTDIR)) {
+            return true;
+        } else {
+            return false;
         }
     }
 
     /**
-     * Reload the webserver
+     * Set the output handler object
+     *
+     * @param Output_Output $output  Output handler object
+     *
+     * @return DAOneClick
      */
-    public function doReload()
+    public function setOutput(Output_Output $output)
     {
-        // Check new configuratuon and restore the backup is there is an error
-        exec("/usr/sbin/apache2ctl configtest", $configTest, $configTestResult);
-        if ($configTestResult <> 0) {
-            echo "Error while updating Apache configuration". PHP_EOL;
-
-        } else {
-            $this->debug(1, "Restarting the Apache webserver");
-
-            // Restart the Apache webserver to load the certificate
-            exec("/etc/init.d/apache2 reload");
-
-            $this->debug(1, "Wait a few seconds so we are sure Apache is servering the certificates");
-
-            // Wait a few seconds so Apache is servering the certificates
-            sleep(5);
-        }
+        $this->_output = $output;
+        return $this;
+    }
+    
+    /**
+     * Write a message to the debugger
+     *
+     * @param int    $level    Level of message to send to debug
+     * @param string $message  Message to send
+     *
+     * @return null
+     */
+    protected function debug($level, $message)
+    {
+        $this->_output->debug()->write($level, $message);
     }
 }
 
-// check/create dir -p /etc/ssl/oneclickssl/backup
 
-$oneclick = new ApacheOneClick();
-$oneclick->setDomain('remote.paul.vanbrouwershaven.com');
-$oneclick->setVoucher('5daytrialDV');
-$oneclick->setMail('paul@vanbrouwershaven.com');
-//$oneclick->setPort(443);
-//$oneclick->setLang('en');
+// Create certificate directory if not exists
+if (!is_dir(CERTDIR .'backup')) {
+	mkdir(CERTDIR, 600, true);
+}
 
-// Debug outputting (default: 0)
-$oneclick->setDebug(4);
-$oneclick->setTest(1);
+// Create certificate backup directory if not exists
+if (!is_dir(CERTDIR .'backup')) {
+	mkdir(CERTDIR .'backup', 600, true);
+    
+    // Check the Apache configuration for mod_ssl or mod_gnutls
+    $sslModule = shell_exec("/usr/sbin/apache2ctl -D DUMP_MODULES 2>/dev/null");
+    if (!preg_match("/ssl_module|gnutls_module/i", $sslModule)) {
+        echo "Please make sure your Apache webserver is correctly configured". PHP_EOL;
+    }
+}
+
+/**
+ * Initiate OneClickSSL Procedure
+ *  $domain, $email, $voucher, $port = self::DEFAULT_SSL_PORT, $lang = self::DEFAULT_LANG 
+ */
+$certData = new CertificateData('remote.paul.vanbrouwershaven.com',
+                                'paul.vanbrouwershaven@globalsign.com',
+                                '5daytrialDV');
+  
+$oneclick = OneClickSSL::init($certData, new ApacheOneClick());
+
+$oneclick->output()->debug()->setLevel(1);
+
+// Run on production (0), testing (1) or staging server (2)
+$oneclick->setEnvironment(1);
 
 // Write procgress into status file (default: 0)
-$oneclick->setWriteStatus(1);
+//$oneclick->output()->status()->setStatusPath(realpath('/tmp/'))->setWriteStatus(true);
 
-if (!$oneclick->order()) {
-    echo "Instllation error". PHP_EOL;
-}
+$oneclick->order();
 ?>
