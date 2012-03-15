@@ -214,11 +214,21 @@ Beschreibung:
   </data>
   <data name="ProcessingText" xml:space="preserve">
     <value>OneClickSSL(tm) Installer v{0}                   (c)GMO GlobalSign, 2012
-=============================================================================Benutzen Sie diese Anwendung, um OneClickSSL-Gutscheine einzulösen 
-undautomatisch SSL-Sicherheit und das „vertrauenswürdige Sicherheitsschloss“ 
-aufIhrer Webseite zu aktivieren.OneClickSSLs sichere Webseiten-Aktivierung 
-in Bearbeitung.Diese Seite nicht schließen oder von dieser wegnavigieren bis 
-der Vorgangabgeschlossen ist...
+
+=============================================================================
+
+Benutzen Sie diese Anwendung, um OneClickSSL-Gutscheine einzulösen 
+und
+automatisch SSL-Sicherheit und das „vertrauenswürdige Sicherheitsschloss“ 
+auf
+Ihrer Webseite zu aktivieren.
+
+OneClickSSLs sichere Webseiten-Aktivierung 
+in Bearbeitung.
+
+Diese Seite nicht schließen oder von dieser wegnavigieren bis 
+der Vorgang
+abgeschlossen ist...
 ---------------------------------------------------------------</value>
   </data>
   <data name="RealCertificateFailedAPIConnection" xml:space="preserve">
@@ -258,7 +268,8 @@ der Vorgangabgeschlossen ist...
     <value>Die Domain-Überprüfung und  der Antrag für ein SSL-Zertifikat werden durchgeführt</value>
   </data>
   <data name="PerformingRevocationVerification" xml:space="preserve">
-    <value>Die Domain-Überprüfung wird durchgeführt und der Status des SSL-Zertifikates wird überprüft</value>
+    <value>Die Domain-Überprüfung wird durchgeführt und der Status des SSL-Zertifikates 
+wird überprüft</value>
   </data>
   <data name="RevokingSSLCertificate" xml:space="preserve">
     <value>Das SSL-Zertifikat widerrufen und von der Webseite entfernen</value>
@@ -276,10 +287,17 @@ der Vorgangabgeschlossen ist...
     <value>Die Einrichtung der durch OneClickSSL  gesicherten Seite war erfolgreich!</value>
   </data>
   <data name="SetupUnSuccessful" xml:space="preserve">
-    <value>Wir konnten das SSL-Zertifikat leider nicht installieren. Wir empfehlen Ihnen,die Installation ein zweites Mal durchzuführen und den –debug-Modus zu nutzen,um offensichtliche Fehler ausfindig zu machen.  Der debug-Output ist außerdemeine hilfreiche Datei für Ihr Support-Team.  Hängen Sie "&gt;debugoutput.txt" andie Befehlszeile an, um den Output  in einer Textdatei zu speichern.Ein Hilfe-Menü ist mit oneclickssl -? oder -help</value>
+    <value>Wir konnten das SSL-Zertifikat leider nicht installieren. Wir empfehlen Ihnen,
+die Installation ein zweites Mal durchzuführen und den –debug-Modus zu nutzen,
+um offensichtliche Fehler ausfindig zu machen.  Der debug-Output ist außerdem
+eine hilfreiche Datei für Ihr Support-Team.  Hängen Sie "&gt;debugoutput.txt" an
+die Befehlszeile an, um den Output  in einer Textdatei zu speichern.
+
+Ein Hilfe-Menü ist mit oneclickssl -? oder -help</value>
   </data>
   <data name="DNSSetToResolveInternally" xml:space="preserve">
-    <value>Die DNS-Suche für Ihre Domain hat festgestellt, dass diese die gleiche IP-Adresse wie Ihre NAT-Einstellungen hat. Dieses deutet daraufhin, dass Sie einen internen DNS-Server besitzen.  Bitte ändern Sie die “hosts”-Datei auf diesem Server, damit die wahre externe DNS IP-Adresse für diese Installation erfolgreich sein kann. Die hosts-Datei finden Sie im  Windows/System32/Drivers/etc.-Verzeichnis und muss mit Notpad oder einem ähnlichen Editorprogramm im Administrator-Mode bearbeitet werden.</value>
+    <value>Die DNS-Suche für Ihre Domain hat festgestellt, dass diese die gleiche IP-Adresse wie Ihre NAT-Einstellungen hat. Dieses deutet daraufhin, dass Sie einen internen DNS-Server besitzen.  
+Bitte ändern Sie die “hosts”-Datei auf diesem Server, damit die wahre externe DNS IP-Adresse für diese Installation erfolgreich sein kann. Die hosts-Datei finden Sie im  Windows/System32/Drivers/etc.-Verzeichnis und muss mit Notpad oder einem ähnlichen Editorprogramm im Administrator-Mode bearbeitet werden.</value>
   </data>
   <data name="FormAgreement" xml:space="preserve">
     <value>Ich habe die Allgemeinen Geschäftsbedingungen des OneClickSSL 
@@ -512,7 +530,7 @@ Beschreibung:
   <data name="RevokeCert" xml:space="preserve">
     <value>Requesting certificate revocation</value>
   </data>
-  <data name="CheckIP" xml:space="preserve">
+  <data name="CheckIp" xml:space="preserve">
     <value>Checking if this webiste runs on a dedicated/unique ip address</value>
   </data>
   <data name="CheckVoucher" xml:space="preserve">

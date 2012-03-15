@@ -268,7 +268,8 @@ het proces voltooid is...
     <value>Serienummer en domeingegevens worden naar de GlobalSign OneClickSSL verstuurd</value>
   </data>
   <data name="SendingVoucherAndDomain" xml:space="preserve">
-    <value>Voucher en Domeingegevens worden naar de GlobalSign OneClickSSL serviceverstuurd</value>
+    <value>Voucher en Domeingegevens worden naar de GlobalSign OneClickSSL service
+verstuurd</value>
   </data>
   <data name="SettingUpAndActivating" xml:space="preserve">
     <value>Installatie SSL en activering van de beveiligde website</value>
@@ -277,10 +278,17 @@ het proces voltooid is...
     <value>OneClickSSL beveiligde website setup succesvol voltooid!</value>
   </data>
   <data name="SetupUnSuccessful" xml:space="preserve">
-    <value>Het SSL certificaat kon niet worden geïnstalleerd. We raden u aan om hetinstallatieproces een tweede keer uit te voeren en gebruik te maken van dedebug mode om fouten op te sporen. De debug output kan nuttig zijn voor uw Support Team. Gelieve “&gt;debugoutput.txt” in de opdrachtregel in te voeren om de output te bewaren in een tekstbestand.Een help-menu is beschikbaar met oneclickssl -? of -help</value>
+    <value>Het SSL certificaat kon niet worden geïnstalleerd. We raden u aan om het
+installatieproces een tweede keer uit te voeren en gebruik te maken van de
+debug mode om fouten op te sporen. De debug output kan nuttig zijn voor uw 
+Support Team. Gelieve “&gt;debugoutput.txt” in de opdrachtregel in te voeren om 
+de output te bewaren in een tekstbestand.
+
+Een help-menu is beschikbaar met oneclickssl -? of -help</value>
   </data>
   <data name="DNSSetToResolveInternally" xml:space="preserve">
-    <value>De DNS-zoekopdracht voor uw domein heeft hetzelfde IP adres als uw NAT instelling. Dit lijkt erop te wijzen dat u een interne DNS server heeft.Gelieve het Hosts-bestand op deze server te wijzigen zodat dit naar het ware externe DNS IP adres wijst. het Hosts-bestand kan gevonden worden in de folder windows/system32/drivers/etc en kan gewijzigd worden in Administrator modus met behulp van Notepad of een gelijkaardige editor.</value>
+    <value>De DNS-zoekopdracht voor uw domein heeft hetzelfde IP adres als uw NAT instelling. Dit lijkt erop te wijzen dat u een interne DNS server heeft.
+Gelieve het Hosts-bestand op deze server te wijzigen zodat dit naar het ware externe DNS IP adres wijst. het Hosts-bestand kan gevonden worden in de folder windows/system32/drivers/etc en kan gewijzigd worden in Administrator modus met behulp van Notepad of een gelijkaardige editor.</value>
   </data>
   <data name="FormAgreement" xml:space="preserve">
     <value>Ik heb de voorwaarden van de OneClickSSL Subscriber Agreement
@@ -303,7 +311,8 @@ modus</value>
     <value>E-mailadres</value>
   </data>
   <data name="FormIntroDescription" xml:space="preserve">
-    <value>Gebruik deze toepassing om OneClickSSL-vouchers te verzilveren en automatischSSL-
+    <value>Gebruik deze toepassing om OneClickSSL-vouchers te verzilveren en automatisch
+SSL-
 beveiliging te activeren met het "beveiligingshangslot" voor uw website.</value>
   </data>
   <data name="FormIntroTitle" xml:space="preserve">
@@ -355,7 +364,8 @@ beveiliging te activeren met het "beveiligingshangslot" voor uw website.</value>
     <value>Met deze opties kunt u extra geavanceerde opties bieden voor het toepassen of intrekken van uw SSL.</value>
   </data>
   <data name="FormRevokeWarning" xml:space="preserve">
-    <value>"Wilt u het SSL-certificaat echt intrekken dat bij dit domein hoort?Als  u besluit hiermee door te gaan, kan het proces niet ongedaan worden gemaakt en partijen die deze website bezoeken zullen door hun browsersoftware worden gewaarschuwd dat het websitecertificaat niet meer geldig is.  We raden aan intrekking alleen door te voeren in het geval dat de privé sleutel die bij het SSL-certificaat hoort verloren is of corrupt is of wanneer de informatie in het certificaat onjuist wordt geacht."</value>
+    <value>"Wilt u het SSL-certificaat echt intrekken dat bij dit domein hoort?
+Als  u besluit hiermee door te gaan, kan het proces niet ongedaan worden gemaakt en partijen die deze website bezoeken zullen door hun browsersoftware worden gewaarschuwd dat het websitecertificaat niet meer geldig is.  We raden aan intrekking alleen door te voeren in het geval dat de privé sleutel die bij het SSL-certificaat hoort verloren is of corrupt is of wanneer de informatie in het certificaat onjuist wordt geacht."</value>
   </data>
   <data name="FormErrorOccured" xml:space="preserve">
     <value>Er is een fout opgetreden. Klik hier voor meer informatie</value>
@@ -516,7 +526,7 @@ Beschrijving:
   <data name="RevokeCert" xml:space="preserve">
     <value>Aanvragen van een certificaat intrekking</value>
   </data>
-  <data name="CheckIP" xml:space="preserve">
+  <data name="CheckIp" xml:space="preserve">
     <value>Controleren of website draait op een dedicated / uniek IP-adres</value>
   </data>
   <data name="CheckVoucher" xml:space="preserve">

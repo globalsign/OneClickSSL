@@ -428,7 +428,7 @@ class OneClickService
                 return false;
 
             } else {
-                $this->debug(1, "Waiting untill webserver installed the certificate (". $i .")");
+                $this->debug(1, "Waiting until webserver installed the certificate (". $i .")");
                 $this->updateStatus();
 
                 $i++;
