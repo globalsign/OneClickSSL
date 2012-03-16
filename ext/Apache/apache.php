@@ -9,7 +9,7 @@
 *
 * LICENSE: BSD License
 *
-* Copyright © 2012 GMO GlobalsSign KK.
+* Copyright ï¿½ 2012 GMO GlobalsSign KK.
 * All Rights Reserved.
 *
 * Redistribution and use in source and binary forms, with or without
@@ -34,13 +34,13 @@
 * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @copyright  Copyright © 2012 GMO GlobalsSign KK. All Rights Reserved. (http://www.globalsign.com)
+* @copyright  Copyright ï¿½ 2012 GMO GlobalsSign KK. All Rights Reserved. (http://www.globalsign.com)
 * @license    BSD License (3 Clause)
 * @version    $Id$
 * @link       http://www.globalsign.com/ssl/oneclickssl/
 */
 
-define("PLATFORMID", "159083740800001PHP");
+define("PLATFORMID", "236368385400001");
 define("KEYALGORITHM", "RSA");
 
 // Read/write permissions for root only (chmod 600)
