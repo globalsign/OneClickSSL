@@ -40,7 +40,7 @@
 * @link       http://www.globalsign.com/ssl/oneclickssl/
 */
 
-define("PLATFORMID", "863251316500001");
+define("PLATFORMID", "081143925200001");
 define("KEYALGORITHM", "RSA");
 
 // Directory, for config file per site
