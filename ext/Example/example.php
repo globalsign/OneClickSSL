@@ -41,7 +41,7 @@
 */
 
 // Please request your own platform id at a GlobalSign representive
-define("PLATFORMID", "000000000000000");
+define("PLATFORMID", "682770516900001");
 define("KEYALGORITHM", "RSA");
 
 require("../../lib/OneClickSSL.php");
