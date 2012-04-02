@@ -612,7 +612,7 @@ class DAOneClick implements OneClickSSLPlugin
     protected function updateStatus()
     {
         try {
-            if (!$this->output()->status()->updateStatus($this->_certData->getDomain())) {
+            if (!$this->output()->status()->updateStatus($this->_domain)) {
                 $this->debug(3, 'Skip writing status information to file');
             }
         } catch (RunTimeException $e) {
