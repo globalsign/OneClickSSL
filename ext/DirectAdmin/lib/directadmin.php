@@ -53,6 +53,7 @@ if ($_SERVER['SSL']) {
 }
 
 define("DAUSERNAME", $settings['da_user'] ."|". $_ENV['USERNAME']);
+define("DAADMINUSR", $settings['da_user']);
 define("DAPASSWORD", $settings['da_passwd']);
 
 define("PLATFORMID", "863251316500001");
@@ -152,12 +153,53 @@ class DAOneClick implements OneClickSSLPlugin
     }
 
     /**
-     * Check IP requirements, assign a unique IP if availible
+     * Check IP requirements (1.404+), assign a unique IP if availible
      * - http://www.directadmin.com/features.php?id=1309
      */
     public function checkIp() {
         global $usrSettings;
 
+        // You need version 1.404+ to have support this
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, DASERVER .'/CMD_API_LICENSE');
+        curl_setopt($ch, CURLOPT_USERPWD, DAADMINUSR .':'. DAPASSWORD);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        $result = curl_exec($ch);
+        $resultStatus = curl_getinfo($ch);
+        
+        // Did Curl returned an error?
+        if(curl_errno($ch)) {
+            echo "Error in communication with DirectAdmin (".  curl_error($ch) ."), is the plugin correctly configured?";
+            return false;
+        }
+        curl_close($ch);
+
+        if ($resultStatus['content_type'] == 'text/plain') {
+            parse_str($result, $response);
+            $this->debug(1, $response['text']);
+            $this->debug(3, "CMD_API_LICENSE: ". var_export($response, true));
+
+            if ($response['error'] <> 0) {
+                return false;
+            }
+            
+            // If the current version does not support IP check, skip and continue!
+            if (intval($response['version']) < 1.404) {
+                $this->debug(1, "You need DirectAdmin 1.404 or higher to support IP checking and auto assignments. You are running version ". $response['version'] .", please upgrade!");
+                return true;
+            }
+            
+        } else {
+            $this->debug(1, "Unkown error from DirectAdmin when restoring backup.");
+            $this->debug(3, $result);
+            return false;
+        }
+        
         // Check DirectAdmin IP settings for this domain
         $qstr = array();
         $qstr['domain'] = $this->_domain;
