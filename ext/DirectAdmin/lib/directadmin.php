@@ -9,7 +9,7 @@
 *
 * LICENSE: BSD License
 *
-* Copyright © 2012 GMO GlobalsSign KK.
+* Copyright ï¿½ 2012 GMO GlobalsSign KK.
 * All Rights Reserved.
 *
 * Redistribution and use in source and binary forms, with or without
@@ -34,7 +34,7 @@
 * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @copyright  Copyright © 2012 GMO GlobalsSign KK. All Rights Reserved. (http://www.globalsign.com)
+* @copyright  Copyright ï¿½ 2012 GMO GlobalsSign KK. All Rights Reserved. (http://www.globalsign.com)
 * @license    BSD License (3 Clause)
 * @version    $Id$
 * @link       http://www.globalsign.com/ssl/oneclickssl/
@@ -401,7 +401,7 @@ class DAOneClick implements OneClickSSLPlugin
 
                 } else {
                     $this->debug(1, "We have no unused ip addresses availible that we can assign to this webiste.");
-                    $this->debug(1, "Pleask ask the administrator to assign a new ip address to your account.");
+                    $this->debug(1, "Please ask the administrator to assign a new ip address to your account.");
 
                     // Do we want to contineu if the server supports SNI?
                     return false;
