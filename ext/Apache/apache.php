@@ -9,7 +9,7 @@
 *
 * LICENSE: BSD License
 *
-* Copyright © 2012 GMO GlobalsSign KK.
+* Copyright ï¿½ 2012 GMO GlobalsSign KK.
 * All Rights Reserved.
 *
 * Redistribution and use in source and binary forms, with or without
@@ -34,13 +34,13 @@
 * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
-* @copyright  Copyright © 2012 GMO GlobalsSign KK. All Rights Reserved. (http://www.globalsign.com)
+* @copyright  Copyright ï¿½ 2012 GMO GlobalsSign KK. All Rights Reserved. (http://www.globalsign.com)
 * @license    BSD License (3 Clause)
 * @version    $Id$
 * @link       http://www.globalsign.com/ssl/oneclickssl/
 */
 
-define("PLATFORMID", "159083740800001PHP");
+define("PLATFORMID", "236368385400001");
 define("KEYALGORITHM", "RSA");
 
 // Read/write permissions for root only (chmod 600)
@@ -53,13 +53,57 @@ class ApacheOneClick implements OneClickSSLPlugin
     protected $_output;
 
     protected $_domain;
+    
+    protected $_apache;
+    
+    protected $_apache2ctl;
+    
+    /**
+     * Set up the object with the Plugin and Output handler
+     */
+    public function __construct()
+    {
+    	// Locate Apache init script
+        if (is_executable('/etc/init.d/apache2')) {
+    		$this->_apache = "/etc/init.d/apache2";
+    		
+    	} else if (is_executable("/etc/init.d/apache")) {
+    		$this->_apache = "/etc/init.d/apache";
+
+    	} else if (is_executable("/etc/init.d/httpd")) {
+    		$this->_apache = "/etc/init.d/httpd";
+
+	} else {
+		$this->debug(1, "Can't find Apache init script, please create a symbolic link or update 'apache.php'");
+    		return false;
+	}
+	
+	
+	// Locate apache2ctl
+        if (is_executable('/usr/sbin/apache2ctl')) {
+    		$this->_apache2ctl = "/usr/sbin/apache2ctl";
+    		
+    	} else if (is_executable("/usr/local/sbin/apache2ctl")) {
+    		$this->_apache2ctl = "/usr/local/sbin/apache2ctl";
+
+    	} else if (is_executable("/usr/local/apache2/bin/apachectl")) {
+    		$this->_apache2ctl = "/usr/local/apache2/bin/apachectl";
+    		
+    	} else if (is_executable("/opt/apache2/bin/apachectl")) {
+    		$this->_apache2ctl = "/opt/apache2/bin/apachectl";
+    		
+	} else {
+		$this->debug(1, "Can't find apache2ctl, please create a symbolic link or update 'apache.php'");
+    		return false;
+	}
+    }
 
     /**
      * Check for unique ip address
      */    
     public function checkIp() {
         $ip = gethostbyname($this->_domain);
-        exec("apache2ctl -D DUMP_VHOSTS 2>/dev/null | grep '". $ip .":80'", $vhostSites, $vhostSitesResult);
+        exec($this->_apache2ctl ." -D DUMP_VHOSTS 2>/dev/null | grep '". $ip .":80'", $vhostSites, $vhostSitesResult);
         if ($vhostSitesResult == 0 && count($vhostSites) === 1) {
             $this->debug(1, "This website is running on a dedicated IP address: ".$ip);
             return true;
@@ -95,7 +139,7 @@ class ApacheOneClick implements OneClickSSLPlugin
         chmod(CERTDIR . $this->_domain . "_ca.crt", 600);
         
         // Reuqest a parsable list of virtual hosts that match or domain
-        exec("apache2ctl -D DUMP_VHOSTS 2>/dev/null | grep '". gethostbyname($this->_domain) ."'", $vhostSites, $vhostSitesResult);
+        exec($this->_apache2ctl ." -D DUMP_VHOSTS 2>/dev/null | grep '". gethostbyname($this->_domain) ."'", $vhostSites, $vhostSitesResult);
         if ($vhostSitesResult == 0 && preg_match_all("/([^\s]*)\s*[^\s]*\s\(([^:]*)/i", implode($vhostSites, PHP_EOL), $file)) {
             $ip = gethostbyname($this->_domain);
                        
@@ -198,9 +242,15 @@ class ApacheOneClick implements OneClickSSLPlugin
                         $vhostBlock .= "\tSSLCertificateChainFile ". CERTDIR . $this->_domain . "_ca.crt" .PHP_EOL;
                     }
                     
+                    // We did not found any SSL config, save to copy
+                    if (!$vhostSsl) {
+                    	$vhosts[$vhostData['ip']] = $vhostBlock;
+                    }
+                    
                     // Close virtualhost and include config
                     $vhostBlock .= "</VirtualHost>" .PHP_EOL;
                     $newConfig .= $vhostBlock;
+                    
                     unset($vhostBlock);
                 }
             }
@@ -230,7 +280,7 @@ class ApacheOneClick implements OneClickSSLPlugin
         file_put_contents($vhostConfigFile, $newConfig);
         
         // Reload Apache
-        exec("/etc/init.d/apache2 reload", $configReload, $configReloadResult);
+        exec($this->_apache ." reload", $configReload, $configReloadResult);
         
         if ($configReloadResult <> 0) {
             $this->debug(1, "Error while reloading Apache configuration");
@@ -290,7 +340,7 @@ class ApacheOneClick implements OneClickSSLPlugin
      *
      * @param Output_Output $output  Output handler object
      *
-     * @return DAOneClick
+     * @return ApacheOneClick
      */
     public function setOutput(Output_Output $output)
     {
@@ -323,7 +373,7 @@ if (!is_dir(CERTDIR .'backup')) {
 	mkdir(CERTDIR .'backup', 600, true);
     
     // Check the Apache configuration for mod_ssl or mod_gnutls
-    $sslModule = shell_exec("/usr/sbin/apache2ctl -D DUMP_MODULES 2>/dev/null");
+    $sslModule = shell_exec($this->_apache2ctl ." -D DUMP_MODULES 2>/dev/null");
     if (!preg_match("/ssl_module|gnutls_module/i", $sslModule)) {
         echo "Please make sure your Apache webserver is correctly configured". PHP_EOL;
     }
@@ -348,4 +398,3 @@ $oneclick->setEnvironment(1);
 //$oneclick->output()->status()->setStatusPath(realpath('/tmp/'))->setWriteStatus(true);
 
 $oneclick->order();
-?>
