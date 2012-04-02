@@ -567,6 +567,16 @@ class DAOneClick implements OneClickSSLPlugin
         unset($this->backup);
         return true;
     }
+    
+    /**
+     * Return the output handler
+     *
+     * @return Output_Output
+     */
+    public function output()
+    {
+        return $this->_output;
+    }
 
     /**
      * Set the output handler object
