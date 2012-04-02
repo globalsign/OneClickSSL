@@ -135,10 +135,11 @@ class DAOneClick implements OneClickSSLPlugin
         curl_close($ch);
 
         if ($resultStatus['content_type'] == 'text/plain') {
-            parse_str($result, $reponse);
-            $this->debug(1, $reponse['text']);
+            parse_str($result, $response);
+            $this->debug(1, $response['text']);
+            $this->debug(3, "CMD_API_SSL: ". var_export($response, true));
 
-            if ($reponse['error'] <> 0) {
+            if ($response['error'] <> 0) {
                 return false;
             }
         } else {
@@ -185,18 +186,26 @@ class DAOneClick implements OneClickSSLPlugin
         curl_close($ch);
 
         if ($resultStatus['content_type'] == 'text/plain') {
-            parse_str($result, $reponse);
-            $this->debug(1, $reponse['text']);
+            parse_str($result, $response);
+            $this->debug(1, $response['text']);
+            $this->debug(3, "CMD_API_ADDITIONAL_DOMAINS: ". var_export($response, true));
 
-            if ($reponse['error'] <> 0) {
+            if ($response['error'] <> 0) {
                 return false;
             }
 
-            $currentIp = $reponse['ip'];
-            parse_str($reponse['assigned_ips'], $assigned_ips);
-            //parse_str($reponse['available_ips'], $available_ips);
-            parse_str($reponse['shared_ips'], $shared_ips);
-            parse_str($reponse['owned_ips'], $owned_ips);
+            $currentIp = $response['ip'];
+            parse_str($response['assigned_ips'], $assigned_ips);
+            $this->debug(2, "Assigned IP addresses: ". implode(', ', $assigned_ips));
+            
+            //parse_str($response['available_ips'], $available_ips);
+            //$this->debug(2, "Available IP addresses: ". implode(', ', $available_ips));
+            
+            parse_str($response['shared_ips'], $shared_ips);
+            $this->debug(2, "Shared IP addresses: ". implode(', ', $shared_ips));
+            
+            parse_str($response['owned_ips'], $owned_ips);
+            $this->debug(2, "Owned IP addresses: ". implode(', ', $owned_ips));
 
             // Check if we have a owned (dedicated) ip
             $shared = true;
@@ -215,7 +224,7 @@ class DAOneClick implements OneClickSSLPlugin
 
             // Check if we are on a shared ip
             if ($shared) {
-                $this->debug(1, "You can only add a certificate if you own the ip you are using, ". $reponse['ip'] ." is used by other sites too.");
+                $this->debug(1, "You can only add a certificate if you own the ip you are using, ". $response['ip'] ." is used by other sites too.");
 
                 // Can we assign a dedicated ip?
                 if (count($owned_ips) > 0 && $usrSettings['auto_ip'] === 1) {
@@ -252,10 +261,11 @@ class DAOneClick implements OneClickSSLPlugin
                     curl_close($ch);
 
                     if ($resultStatus['content_type'] == 'text/plain') {
-                        parse_str($result, $reponse);
-                        $this->debug(1, $reponse['text']);
+                        parse_str($result, $response);
+                        $this->debug(1, $response['text']);
+                        $this->debug(3, "CMD_API_DOMAIN: ". var_export($response, true));
 
-                        if ($reponse['error'] <> 0) {
+                        if ($response['error'] <> 0) {
                             return false;
                         }
                     } else {
@@ -297,10 +307,11 @@ class DAOneClick implements OneClickSSLPlugin
                     curl_close($ch);
 
                     if ($resultStatus['content_type'] == 'text/plain') {
-                        parse_str($result, $reponse);
-                        $this->debug(1, $reponse['text']);
+                        parse_str($result, $response);
+                        $this->debug(1, $response['text']);
+                        $this->debug(3, "CMD_API_DOMAIN: ". var_export($response, true));
 
-                        if ($reponse['error'] <> 0) {
+                        if ($response['error'] <> 0) {
                             return false;
                         }
                     } else {
@@ -341,10 +352,11 @@ class DAOneClick implements OneClickSSLPlugin
                     curl_close($ch);
 
                     if ($resultStatus['content_type'] == 'text/plain') {
-                        parse_str($result, $reponse);
-                        $this->debug(1, $reponse['text']);
+                        parse_str($result, $response);
+                        $this->debug(1, $response['text']);
+                        $this->debug(3, "CMD_API_DOMAIN: ". var_export($response, true));
 
-                        if ($reponse['error'] <> 0) {
+                        if ($response['error'] <> 0) {
                             return false;
                         }
                     } else {
@@ -445,10 +457,11 @@ class DAOneClick implements OneClickSSLPlugin
         curl_close($ch);
 
         if ($resultStatus['content_type'] == 'text/plain') {
-            parse_str($result, $reponse);
-            $this->debug(1, $reponse['text']);
+            parse_str($result, $response);
+            $this->debug(1, $response['text']);
+            $this->debug(3, "CMD_API_SSL: ". var_export($response, true));
 
-            if ($reponse['error'] <> 0) {
+            if ($response['error'] <> 0) {
                 return false;
             }
         } else {
@@ -458,7 +471,7 @@ class DAOneClick implements OneClickSSLPlugin
         }
 
         // Save the current certificates in memory
-        $this->backup = $reponse;
+        $this->backup = $response;
 
         // Include the CA certificate in the backup
         $ch = curl_init();
@@ -481,10 +494,11 @@ class DAOneClick implements OneClickSSLPlugin
         curl_close($ch);
 
         if ($resultStatus['content_type'] == 'text/plain') {
-            parse_str($result, $reponse);
-            $this->debug(1, $reponse['text']);
+            parse_str($result, $response);
+            $this->debug(1, $response['text']);
+            $this->debug(3, "CMD_API_SSL: ". var_export($response, true));
 
-            if ($reponse['error'] <> 0) {
+            if ($response['error'] <> 0) {
                 return false;
             }
         } else {
@@ -494,8 +508,8 @@ class DAOneClick implements OneClickSSLPlugin
         }
 
         // Include the CA certificate
-        $this->backup['cacert'] = $reponse['cacert'];
-        $this->backup['active'] = $reponse['enabled'];
+        $this->backup['cacert'] = $response['cacert'];
+        $this->backup['active'] = $response['enabled'];
 
         return true;
     }
@@ -536,10 +550,11 @@ class DAOneClick implements OneClickSSLPlugin
         curl_close($ch);
 
         if ($resultStatus['content_type'] == 'text/plain') {
-            parse_str($result, $reponse);
-            $this->debug(1, $reponse['text']);
+            parse_str($result, $response);
+            $this->debug(1, $response['text']);
+            $this->debug(3, "CMD_API_SSL: ". var_export($response, true));
 
-            if ($reponse['error'] <> 0) {
+            if ($response['error'] <> 0) {
                 return false;
             }
         } else {
