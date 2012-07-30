@@ -153,13 +153,13 @@ class DAOneClick implements OneClickSSLPlugin
     }
 
     /**
-     * Check IP requirements (1.404+), assign a unique IP if availible
+     * Check IP requirements (1.40.4+), assign a unique IP if availible
      * - http://www.directadmin.com/features.php?id=1309
      */
     public function checkIp() {
         global $usrSettings;
 
-        // You need version 1.404+ to have support this
+        // You need version 1.40.4+ to have support this
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, DASERVER .'/CMD_API_LICENSE');
         curl_setopt($ch, CURLOPT_USERPWD, DAADMINUSR .':'. DAPASSWORD);
@@ -189,7 +189,7 @@ class DAOneClick implements OneClickSSLPlugin
             }
             
             // If the current version does not support IP check, skip and continue!
-            if (intval($response['version']) < 1.404) {
+            if (version_compare($version, '1.40.4', '<')) {
                 $this->debug(1, "You need DirectAdmin 1.404 or higher to support IP checking and auto assignments. You are running version ". $response['version'] .", please upgrade!");
                 return true;
             }
