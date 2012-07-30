@@ -189,7 +189,7 @@ class DAOneClick implements OneClickSSLPlugin
             }
             
             // If the current version does not support IP check, skip and continue!
-            if (version_compare($version, '1.40.4', '<')) {
+            if (version_compare($response['version'], '1.40.4', '<')) {
                 $this->debug(1, "You need DirectAdmin 1.40.4 or higher to support IP checking and auto assignments. You are running version ". $response['version'] .", please upgrade!");
                 return true;
             }
