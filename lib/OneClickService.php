@@ -405,9 +405,23 @@ class OneClickService
      */
     public function checkInstall($certificate)
     {
+    	// If this is the production certificate we don't have to wait till the certificate
+    	// is installed on the server
+    	$x509 = openssl_x509_parse($certificate);
+    	if ($x509['issuer']['OU'] != "For Test Purposes Only") {
+    		return true;
+    	}
+    
         // Test with openssl if the certificate is installed
         // because this is only natively supported in newer PHP versions
         $orgCertHash = trim(shell_exec("echo ". escapeshellarg($certificate) ." | /usr/bin/openssl x509 -noout -modulus | /usr/bin/openssl sha1"));
+        if ($orgCertHash === "") {
+    		$this->debug(1, "The OpenSSL command line has not given any results, probably we are restricted from execution.");
+        	$this->debug(1, "Waiting a minute to give the server some time to load the certificate.");
+            sleep(60);
+            
+            return true;
+    	}
         $this->debug(1, "Verifing if certificate with hash ". $orgCertHash ." is installed");
 
         $continue = false;
@@ -423,7 +437,7 @@ class OneClickService
                 $continue = true;
 
             } elseif ($i >= 15) {
-                $this->debug(1, "Webserver failed to install the certifcate");
+                $this->debug(1, "Webserver failed to install the certificate");
                 $continue = true;
                 return false;
 
