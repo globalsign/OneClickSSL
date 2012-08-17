@@ -237,18 +237,23 @@ class DAOneClick implements OneClickSSLPlugin
             }
 
             $currentIp = $response['ip'];
-            parse_str($response['assigned_ips'], $assigned_ips);
-            $this->debug(2, "Assigned IP addresses: ". implode(', ', $assigned_ips));
+            if (array_key_exists('assigned_ips', $response)) {
+	            parse_str($response['assigned_ips'], $assigned_ips);
+    	        $this->debug(2, "Assigned IP addresses: ". implode(', ', $assigned_ips));
             
-            //parse_str($response['available_ips'], $available_ips);
-            //$this->debug(2, "Available IP addresses: ". implode(', ', $available_ips));
+        	    //parse_str($response['available_ips'], $available_ips);
+            	//$this->debug(2, "Available IP addresses: ". implode(', ', $available_ips));
             
-            parse_str($response['shared_ips'], $shared_ips);
-            $this->debug(2, "Shared IP addresses: ". implode(', ', $shared_ips));
+           		parse_str($response['shared_ips'], $shared_ips);
+            	$this->debug(2, "Shared IP addresses: ". implode(', ', $shared_ips));
             
-            parse_str($response['owned_ips'], $owned_ips);
-            $this->debug(2, "Owned IP addresses: ". implode(', ', $owned_ips));
-
+            	parse_str($response['owned_ips'], $owned_ips);
+            	$this->debug(2, "Owned IP addresses: ". implode(', ', $owned_ips));
+			} else {
+				$this->debug(1, "You reseller should make sure that the default IP for this user account is the shared address for you server.");
+				$this->debug(1, "Additional IP addresses should be added to this user account besides the shared address.");
+				return false;
+			}
             // Check if we have a owned (dedicated) ip
             $shared = true;
             reset($assigned_ips);
