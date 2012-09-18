@@ -106,14 +106,6 @@ class DAOneClick implements OneClickSSLPlugin
         $qstr['type'] = 'paste';
         $qstr['certificate'] = $privkeySting ."\n". $certString;
 
-        // Include the CA certificate
-        if (strlen($cacertString) > 10) {
-            $qstr['active'] = 'yes';
-            $qstr['cacert'] = $cacertString;
-        } else {
-            $qstr['active'] = 'no';
-        }
-
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, DASERVER .'/CMD_API_SSL');
         curl_setopt($ch, CURLOPT_USERPWD, DAUSERNAME .':'. DAPASSWORD);
@@ -134,19 +126,68 @@ class DAOneClick implements OneClickSSLPlugin
             return false;
         }
         curl_close($ch);
+        
+        $this->debug(3, "CMD_API_SSL Request (Certificate installation): ". var_export($qstr, true));
 
         if ($resultStatus['content_type'] == 'text/plain') {
             parse_str($result, $response);
             $this->debug(1, $response['text']);
-            $this->debug(3, "CMD_API_SSL: ". var_export($response, true));
+            $this->debug(3, "CMD_API_SSL Response (Certificate installation): ". var_export($response, true));
 
             if ($response['error'] <> 0) {
                 return false;
             }
         } else {
-            $this->debug(1, "Unkown error from DirectAdmin while installing certificate");
+            $this->debug(1, "Unkown error from DirectAdmin while installing certificate.");
             $this->debug(3, $result);
             return false;
+        }
+        
+        // Include the CA certificate
+        if (strlen($cacertString) > 10) {
+			$qstr = array();
+			$qstr['domain'] = $this->_domain;
+            $qstr['active'] = 'yes';
+            $qstr['type'] = 'cacert';
+            $qstr['action'] = 'save';
+            $qstr['cacert'] = $cacertString;
+            
+            $ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, DASERVER .'/CMD_API_SSL');
+			curl_setopt($ch, CURLOPT_USERPWD, DAUSERNAME .':'. DAPASSWORD);
+			curl_setopt($ch, CURLOPT_POST, true);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($qstr));
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($ch, CURLOPT_HEADER, false);
+			$result = curl_exec($ch);
+			$resultStatus = curl_getinfo($ch);
+	
+			// Did Curl returned an error?
+			if(curl_errno($ch)) {
+				$this->debug(1, "Error in communication with DirectAdmin (".  curl_error($ch) ."), is the plugin correctly configured?");
+				return false;
+			}
+			curl_close($ch);
+			
+			$this->debug(3, "CMD_API_SSL Request (Intermediate installation): ". var_export($qstr, true));
+	
+			if ($resultStatus['content_type'] == 'text/plain') {
+				parse_str($result, $response);
+				$this->debug(1, $response['text']);
+				$this->debug(3, "CMD_API_SSL Response (Intermediate installation): ". var_export($response, true));
+	
+				if ($response['error'] <> 0) {
+					return false;
+				}
+			} else {
+				$this->debug(1, "Unkown error from DirectAdmin while installing intermediate certificate.");
+				$this->debug(3, $result);
+				return false;
+			}
         }
 
         return $certString;
@@ -235,6 +276,101 @@ class DAOneClick implements OneClickSSLPlugin
             if ($response['error'] <> 0) {
                 return false;
             }
+            
+			// Turn SSL ON if it's currently turned off
+			// - if we don't have a dedicated ip this setting is ignored
+			if ($response['ssl'] != 'ON') {
+				// Keep current settings
+            	$qstr = $response;
+            	$qstr['domain'] = $this->_domain;
+            	$qstr['action'] = 'modify';
+            	if ($response['bandwidth'] === 'unlimited') {
+                	unset($qstr['bandwidth']);
+                	$qstr['ubandwidth'] = 'unlimited';
+                }
+            	if ($response['quota'] === 'unlimited') {
+            		unset($qstr['quota']);
+                	$qstr['uquota'] = 'unlimited';
+                }
+                $qstr['ssl'] = 'ON';
+
+				$this->debug(3, "CMD_API_DOMAIN Request (Enable SSL): ". var_export($qstr, true));
+
+				$ch = curl_init();
+				curl_setopt($ch, CURLOPT_URL, DASERVER .'/CMD_API_DOMAIN');
+				curl_setopt($ch, CURLOPT_USERPWD, DAUSERNAME .':'. DAPASSWORD);
+				curl_setopt($ch, CURLOPT_POST, true);
+				curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($qstr));
+				curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+				curl_setopt($ch, CURLOPT_HEADER, false);
+				$result = curl_exec($ch);
+				$resultStatus = curl_getinfo($ch);
+
+				// Did Curl returned an error?
+				if(curl_errno($ch)) {
+					$this->debug(1, "Error in communication with DirectAdmin (".  curl_error($ch) ."), is the plugin correctly configured?");
+					return false;
+				}
+				curl_close($ch);
+				
+      		 	if ($resultStatus['content_type'] == 'text/plain') {
+            		parse_str($result, $response);
+            		$this->debug(3, "CMD_API_DOMAIN Response (Enable SSL): ". var_export($response, true));
+
+      		 		if ($response['error'] <> 0) {
+                		$this->debug(1, "Error enabling SSL for this website (". $response['text'] .").");
+            		} else {
+            			$this->debug(1, "We enabled SSL for this website as it was turned off.");
+            		}
+				}
+				
+				// Use a symbolic link by default
+            	$qstr = $response;
+            	$qstr['domain'] = $this->_domain;
+            	$qstr['action'] = 'private_html';
+                $qstr['val'] = 'symlink';
+
+				$this->debug(3, "CMD_API_DOMAIN Request (Configure symlink): ". var_export($qstr, true));
+
+				$ch = curl_init();
+				curl_setopt($ch, CURLOPT_URL, DASERVER .'/CMD_API_DOMAIN');
+				curl_setopt($ch, CURLOPT_USERPWD, DAUSERNAME .':'. DAPASSWORD);
+				curl_setopt($ch, CURLOPT_POST, true);
+				curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($qstr));
+				curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+				curl_setopt($ch, CURLOPT_HEADER, false);
+				$result = curl_exec($ch);
+				$resultStatus = curl_getinfo($ch);
+
+				// Did Curl returned an error?
+				if(curl_errno($ch)) {
+					$this->debug(1, "Error in communication with DirectAdmin (".  curl_error($ch) ."), is the plugin correctly configured?");
+					return false;
+				}
+				curl_close($ch);
+				
+      		 	if ($resultStatus['content_type'] == 'text/plain') {
+            		parse_str($result, $response);
+            		$this->debug(3, "CMD_API_DOMAIN Response (Configure symlink): ". var_export($response, true));
+
+      		 		if ($response['error'] <> 0) {
+                		$this->debug(1, "Error creating symbolic link (". $response['text'] .").");
+            		} else {
+            			$this->debug(1, "A symbolic link has been created to serve the same website over https.");
+            		}
+				}
+				
+				// Site settings are updated, restart function to get fresh settings
+				return $this->checkIp();
+			}
 
             $currentIp = $response['ip'];
             if (array_key_exists('assigned_ips', $response)) {
