@@ -18,7 +18,7 @@
               <b>{{ LANG::FormDomainNameTitle }}:</b>
             </td>
             <td colspan=2>
-              <input type="hidden" value="{{ domain }}">{{ domain }}
+              <input type="hidden" name="domain" value="{{ domain }}">{{ domain }}
             </td>
           </tr>
           <tr>
