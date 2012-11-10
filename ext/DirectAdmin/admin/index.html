@@ -1,4 +1,4 @@
-#!/usr/local/bin/php
+#!/usr/local/bin/php -d variables_order="EGPCS"
 <?php
 /*
 * PHP version 5
@@ -37,7 +37,7 @@
 */
 
 /**
- * Check PHP version, simplexml, soap, curl
+ * Check PHP version
  */  
 $version = explode('.', PHP_VERSION);
 if ($version[0] < 5) {
@@ -45,6 +45,21 @@ if ($version[0] < 5) {
 	exit;
 }
 unset($version);
+
+/**
+ * Check for Curl
+ */  
+if (!function_exists('curl_init')) {
+	echo 'You need <a href="http://curl.haxx.se/" target="_blank">cURL</a> to use this plugin.';
+	exit;
+}
+
+/**
+ * Check SimpleXML
+ */  
+if (!function_exists(simplexml_load_string)) {
+	die('ERROR: SimpleXML not availible'. PHP_EOL);
+}
 
 /**
  * Read config file
@@ -98,5 +113,3 @@ foreach ($includeMatch[1] as $include){
 	$replace['{% include "'. $include .'" %}'] = file_get_contents($_ENV['DOCUMENT_ROOT'] .'/../skins/default/'. basename($include));
 }
 echo strtr($template, $replace);
-
-?>

@@ -1,6 +1,11 @@
 #!/bin/sh
 
-cd $DOCUMENT_ROOT; //this directory
+if [ -z $DOCUMENT_ROOT ]
+then
+	export DOCUMENT_ROOT='/usr/local/directadmin/plugins/OneClickSSL/scripts'
+fi
+
+cd $DOCUMENT_ROOT;
 cd ..
 
 if [ ! -f etc/oneclick.conf ];
@@ -11,7 +16,7 @@ fi
 /bin/chmod 755 -R $DOCUMENT_ROOT/../
 /bin/chown diradmin:diradmin -R $DOCUMENT_ROOT/../
 
-/bin/mkdir tmp
+/bin/mkdir -p tmp
 
 /bin/chmod 777 -R tmp
 /bin/chmod 777 -R etc

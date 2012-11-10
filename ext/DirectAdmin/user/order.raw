@@ -1,4 +1,4 @@
-#!/usr/local/bin/php
+#!/usr/local/bin/php -d variables_order="EGPCS"
 <?php
 /*
 * PHP version 5
@@ -131,4 +131,3 @@ if (ctype_digit($qstr['r']) && $qstr['r'] > 0) {
 } else {
     $oneclick->order();
 }
-

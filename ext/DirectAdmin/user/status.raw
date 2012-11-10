@@ -1,4 +1,4 @@
-#!/usr/local/bin/php
+#!/usr/local/bin/php -d variables_order="EGPCS"
 <?php
 /*
 * PHP version 5
@@ -43,12 +43,10 @@ header("Pragma: no-cache");
 header("Content-type: application/json");
 
 parse_str($_ENV['QUERY_STRING'], $qstr);
-$file = '/usr/local/directadmin/plugins/OneClickSSL/tmp/'. basename($qstr['d']) .'_status.json';
+$file = $_ENV['DOCUMENT_ROOT'] .'/../tmp/'. basename($qstr['d']) .'_status.json';
 
 if(is_file($file)) {
 	echo file_get_contents($file);
 } else {
 	echo '{ "debug" : "Sorry, no status availible" }';
 }
-
-?>

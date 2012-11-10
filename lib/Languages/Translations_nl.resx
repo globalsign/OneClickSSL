@@ -460,7 +460,7 @@ Beschrijving:
   -t  WebServiceURL -  maakt het gebruik van een URL van een andere webservice mogelijk</value>
   </data>
   <data name="RollingBack" xml:space="preserve">
-    <value>FOUT opgetreden; terug naar het vorige certificaat</value>
+    <value>Er is een fout opgetreden, backup aan het terugzetten..</value>
   </data>
   <data name="AssigningProduction" xml:space="preserve">
     <value>Certificaat wordt aan de website toegewezen</value>
@@ -475,7 +475,7 @@ Beschrijving:
     <value>Ontvangst van serienummer validatie…</value>
   </data>
   <data name="SendingTemp" xml:space="preserve">
-    <value>Verzenden aanvraag tijdelijk certificaat…</value>
+    <value>Verzenden aanvraag tijdelijk certificaat...</value>
   </data>
   <data name="ReceivingTemp" xml:space="preserve">
     <value>Ontvangst van tijdelijk certificaat...</value>
@@ -487,7 +487,7 @@ Beschrijving:
     <value>Ontvangst van aanvraag voor intrekking...</value>
   </data>
   <data name="OrderIDInfo" xml:space="preserve">
-    <value>OPMERKING:  deze order-id voor een 'Tijdelijk' certificaat dient te worden vermeld indien contact met ons team voor technische ondersteuning wordt opgenomen:</value>
+    <value>OPMERKING: deze order-id voor een 'Tijdelijk' certificaat dient te worden vermeld indien contact met ons team voor technische ondersteuning wordt opgenomen:</value>
   </data>
   <data name="SendingProd" xml:space="preserve">
     <value>Verzenden aanvraag productie certificaat</value>

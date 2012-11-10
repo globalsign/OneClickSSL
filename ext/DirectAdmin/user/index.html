@@ -1,4 +1,4 @@
-#!/usr/local/bin/php
+#!/usr/local/bin/php -d variables_order="EGPCS"
 <?php
 /*
 * PHP version 5
@@ -52,6 +52,13 @@ unset($version);
 if (!function_exists('curl_init')) {
 	echo 'You need <a href="http://curl.haxx.se/" target="_blank">cURL</a> to use this plugin.';
 	exit;
+}
+
+/**
+ * Check SimpleXML
+ */  
+if (!function_exists(simplexml_load_string)) {
+	die('ERROR: SimpleXML not availible'. PHP_EOL);
 }
 
 /**
@@ -215,5 +222,3 @@ foreach ($includeMatch[1] as $include){
 	$replace['{% include "'. $include .'" %}'] = file_get_contents($_ENV['DOCUMENT_ROOT'] .'/../skins/default/'. basename($include));
 }
 echo strtr($template, $replace);
-
-?>
