@@ -5,25 +5,25 @@ cd ..
 
 if [ ! -f etc/oneclick.conf ];
 then
-	cp etc/oneclick.conf_default etc/oneclick.conf
+	/bin/cp etc/oneclick.conf_default etc/oneclick.conf
 fi
 
-chmod 755 -R $DOCUMENT_ROOT/../
-chown diradmin:diradmin -R $DOCUMENT_ROOT/../
+/bin/chmod 755 -R $DOCUMENT_ROOT/../
+/bin/chown diradmin:diradmin -R $DOCUMENT_ROOT/../
 
-mkdir tmp
+/bin/mkdir tmp
 
-chmod 777 -R tmp
-chmod 777 -R etc
+/bin/chmod 777 -R tmp
+/bin/chmod 777 -R etc
 
-chmod 644 plugin.conf
-chmod 644 hooks/*
-chmod 644 images/*
+/bin/chmod 644 plugin.conf
+/bin/chmod 644 hooks/*
+/bin/chmod 644 images/*
 
-echo '<p>GlobalSign OneClickSSL Plugin Installed!</p>';
+/bin/echo '<p>GlobalSign OneClickSSL Plugin Installed!</p>';
 
-echo '<p><a href="http://www.globalsign.com/ssl/oneclickssl/directadmin/" target="_blank"> Click here to visit our website for more information and support</a></p>';
+/bin/echo '<p><a href="http://www.globalsign.com/ssl/oneclickssl/directadmin/" target="_blank"> Click here to visit our website for more information and support</a></p>';
 
-echo '<p><strong><a href="/CMD_PLUGINS_ADMIN/OneClickSSL">Please check the configuration of the plugin now!</a></strong></p>';
+/bin/echo '<p><strong><a href="/CMD_PLUGINS_ADMIN/OneClickSSL">Please check the configuration of the plugin now!</a></strong></p>';
 
 exit 0;
