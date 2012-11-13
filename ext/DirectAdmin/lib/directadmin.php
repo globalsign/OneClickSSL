@@ -413,7 +413,7 @@ class DAOneClick implements OneClickSSLPlugin
                 if (count($owned_ips) > 0 && $usrSettings['auto_ip'] === 1) {
                     reset($owned_ips);
                     $newIp = current($owned_ips);
-                    $this->debug(1, "We are goging to assign ip ". $newIp ." to this website.");
+                    $this->debug(1, "We are going to assign ip ". $newIp ." to this website.");
 
                     $qstr = array();
                     $qstr['domain'] = $this->_domain;
@@ -459,7 +459,7 @@ class DAOneClick implements OneClickSSLPlugin
 
                     // Delete shared ip from site and remove DNS
                     //  -- next add shared ip (we don't want the site down) and do NOT add DNS
-                    $this->debug(1, "We are goging to remove ip temporary ". $currentIp ." to delete the DNS.");
+                    $this->debug(1, "We are going to remove ip temporary ". $currentIp ." to delete the DNS.");
 
                     $qstr = array();
                     $qstr['domain'] = $this->_domain;
