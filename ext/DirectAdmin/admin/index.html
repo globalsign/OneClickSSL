@@ -77,6 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$settings['da_user'] = $_POST['da_user'];
 	$settings['da_passwd'] = $_POST['da_passwd'];
 	$settings['debug_level'] = $_POST['debug_level'];
+	$settings['auto_ip'] = $_POST['auto_ip'];
 	$settings['voucher_url'] = $_POST['voucher_url'];
 	$settings['da_loginkey'] = $_POST['da_loginkey'];
 	
@@ -92,6 +93,7 @@ $replace['{{ da_passwd }}'] = $settings['da_passwd'];
 $replace['{{ debug_level }}'] = $settings['debug_level'];
 $replace['{{ voucher_url }}'] = $settings['voucher_url'];
 $replace['{{ da_loginkey }}'] = $settings['da_loginkey'];
+$replace['{{ auto_ip }}'] = $settings['auto_ip'];
 
 /**
  * Load translation

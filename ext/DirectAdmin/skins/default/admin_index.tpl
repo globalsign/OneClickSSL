@@ -22,6 +22,21 @@
 		</div>
 	</div>
 
+	<!-- Automatically assign available IP addresses -->
+	<h2>Automatically assign available IP address</h2>
+	<p class='OCdescription'>Automatically assign an IP address and update DNS information when an ip address is available for this specific user and the site is currently not availible on a dedicated ip address. While the old shared IP address is removed from the DNS the address wil not be removed from the website to make sure there is no downtime.</p>
+	<div class="ocHighlight">
+		<div class="ocSetting">
+		  <div class="ocDsc">Automatically assign available IP address</div>
+		  <div class="ocInput">
+			<select name="auto_ip" id="auto_ip">
+			  <option value="0">Off</option>
+			  <option value="1">On</option>
+			</select>
+		  </div>
+		</div>
+	</div>
+
 	<!-- RAA Login Key -->
 	<h2>Remote Adminsitration Agent (RAA) Login Key</h2>
 	<p class='OCdescription'>Create a Login Key <a href="/CMD_LOGIN_KEYS">here</a> if you want to use the RAA. The login key will be transferred to GlobalSign if you request a certificate with RAA enabled. You should limit the key usage to allow the CMD_PLUGINS command, a usage of 0 (unlimited) and no expiry.</p>
@@ -76,6 +91,7 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('#debug_level').val('{{ debug_level }}');
+			$('#auto_ip').val('{{ auto_ip }}');
 			$('#environment').val('{{ environment }}');
 		});
 	</script>

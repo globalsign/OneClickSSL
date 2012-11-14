@@ -28,11 +28,6 @@
 			  <option value="8">8</option>
 			  <option value="9">9</option>
 			</select>
-			<script type="text/javascript">
-				$(document).ready(function(){
-					$('#debug_level').val('{{ debug_level }}');
-				});
-			</script>
 		  </div>
 		</div>
 	</div>
@@ -53,7 +48,13 @@
 	<div class="ocHighlight">
 		<div class="ocSetting">
 		  <div class="ocDsc">Automatically assign available IP address</div>
-		  <div class="ocInput"><input type="checkbox" name="auto_ip"{{ auto_ip }}></div>
+		  <div class="ocInput">
+			<select name="auto_ip" id="auto_ip">
+			  <option value="">{{ LANG::Default }}</option>
+			  <option value="0">Off</option>
+			  <option value="1">On</option>
+			</select>
+		  </div>
 		</div>
 	</div>
 	
@@ -62,3 +63,10 @@
 	
 </form>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#debug_level').val('{{ debug_level }}');
+	$('#auto_ip').val('{{ auto_ip }}');
+});
+</script>

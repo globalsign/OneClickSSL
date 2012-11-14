@@ -136,12 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($qstr['action'])) {
 		$usrSettings['remote_admin'] = 0;
 	}
 	
-	if ($_POST['auto_ip']) {
-		$usrSettings['auto_ip'] = 1;
-	} else {
-		$usrSettings['auto_ip'] = 0;
-	}
-	
+	$usrSettings['auto_ip'] = $_POST['auto_ip'];
 	$usrSettings['debug_level'] = $_POST['debug_level'];
 	
 	$fp = fopen($usrConfig, 'w');
@@ -181,8 +176,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'
 	} else {
 		$replace['{{ remote_admin }}'] = '';
 	}
-	if ($usrSettings['auto_ip'] === 1) {
-		$replace['{{ auto_ip }}'] = ' checked';
+	if (ctype_digit($usrSettings['auto_ip'])) {
+		$replace['{{ auto_ip }}'] = $usrSettings['auto_ip'];
 	} else {
 		$replace['{{ auto_ip }}'] = '';
 	}

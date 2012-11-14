@@ -43,8 +43,8 @@
 /**
  * Read plugin config file
  */
-$config = $_ENV['DOCUMENT_ROOT'] .'/../etc/oneclick.conf';
-$settings = unserialize(@file_get_contents($config));
+//$config = $_ENV['DOCUMENT_ROOT'] .'/../etc/oneclick.conf';
+//$settings = unserialize(@file_get_contents($config));
 
 if ($_SERVER['SSL']) {
     define("DASERVER", "https://". $_SERVER['SERVER_ADDR'] .":". $_SERVER['SERVER_PORT']);
@@ -198,7 +198,7 @@ class DAOneClick implements OneClickSSLPlugin
      * - http://www.directadmin.com/features.php?id=1309
      */
     public function checkIp() {
-        global $usrSettings;
+        global $usrSettings, $settings;
 
         // You need version 1.40.4+ to have support this
         $ch = curl_init();
@@ -409,8 +409,17 @@ class DAOneClick implements OneClickSSLPlugin
             if ($shared) {
                 $this->debug(1, "You can only add a certificate if you own the ip you are using, ". $response['ip'] ." is used by other sites too.");
 
+                // Do we want to assign IP addresses automatically?
+                if (ctype_digit($usrSettings['auto_ip'])) {
+                    $auto_ip = intval($usrSettings['auto_ip']);
+                } else if (ctype_digit($settings['auto_ip'])) {
+                    $auto_ip = intval($settings['auto_ip']);
+                } else {
+                	$auto_ip = 0;
+                }
+
                 // Can we assign a dedicated ip?
-                if (count($owned_ips) > 0 && $usrSettings['auto_ip'] === 1) {
+                if (count($owned_ips) > 0 && $auto_ip === 1) {
                     reset($owned_ips);
                     $newIp = current($owned_ips);
                     $this->debug(1, "We are going to assign ip ". $newIp ." to this website.");

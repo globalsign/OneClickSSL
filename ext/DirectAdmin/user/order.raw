@@ -42,7 +42,7 @@ header("Cache-Control: no-cache");
 header("Pragma: no-cache");
 header("Content-type: text/html");
 
-global $usrSettings;
+global $usrSettings, $settings;
 
 /**
  * Read plugin config file
