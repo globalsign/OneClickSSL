@@ -129,6 +129,49 @@ class F5OneClick implements OneClickSSLPlugin
             $this->debug(1, "Certificate bundle uploaded to device.");
         }
         
+        // Create new profile and assign certificate/key meterial
+        $arguments = array();
+        $arguments['profile_names'][] = $this->_domain .'_OneClickSSL';
+        //$arguments['certs'][] = array('value' => $this->_domain .'_OneClickSSL.crt', 'default_flag' => false);
+        //$arguments['keys'][] = array('value' => $this->_domain .'_OneClickSSL.key', 'default_flag' => false);
+
+        if ($this->doCallSoap(F5WSDL_ProfileServerSSL, 'create', $arguments) === false) {
+            $this->debug(1, "Error while creating profile.");
+            return false;
+        } else {
+            $this->debug(1, "Created cerificate profile.");
+        }
+
+        // Create new profile and assign certificate
+        $arguments = array();
+        $arguments['profile_names'][] = $this->_domain .'_OneClickSSL';
+        $arguments['certs'][] = array('value' => $this->_domain .'_OneClickSSL.crt', 'default_flag' => false);
+
+        if ($this->doCallSoap(F5WSDL_ProfileServerSSL, 'set_certificate_file', $arguments) === false) {
+            $this->debug(1, "Error while assining certificate chain to profile.");
+            return false;
+        } else {
+            $this->debug(1, "Assigned private certificate chain to profile.");
+        }
+
+        // Create new profile and assign key meterial
+        $arguments = array();
+        $arguments['profile_names'][] = $this->_domain .'_OneClickSSL';
+        $arguments['keys'][] = array('value' => $this->_domain .'_OneClickSSL.key', 'default_flag' => false);
+
+        if ($this->doCallSoap(F5WSDL_ProfileServerSSL, 'set_key_file', $arguments) === false) {
+            $this->debug(1, "Error while assining key to profile.");
+            return false;
+        } else {
+            $this->debug(1, "Assigned private key to profile.");
+        }
+
+        //F5WSDL_ProfileServerSSL
+        //Name
+        //Parent Profile -> serverssl
+        //Certificate
+        //Key
+
         exit;
     }
     
