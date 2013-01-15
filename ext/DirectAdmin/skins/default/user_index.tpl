@@ -8,13 +8,12 @@
 <b>{{ LANG::FormIntroTitle }}</b><br>
 <p>{{ LANG::FormIntroDescription }}</p>
 <form action="" method="post" name="redeemVouchers">
-  <table style="background-color: #F6F6F6; border-color: gray; border-width: 1px; border-spacing: 2px; width:600px">
+  <table style="background-color: #F6F6F6; border-color: gray; border-width: 1px; border-spacing: 2px; width:765px;">
     <tr>
       <td>
-      
         <table>
           <tr>
-            <td>
+            <td width="100">
               <b>{{ LANG::FormDomainNameTitle }}:</b>
             </td>
             <td colspan=2>
@@ -22,27 +21,22 @@
             </td>
           </tr>
           <tr>
-            <td colspan=3>
-              * This domain name matches the servers hostname. This may result in the certificate failing to install. If you experience any unusual behaviour installing certificates on this domain you may have to change the servers hostname before attempting to install a certificate.
-            </td>
-          </tr>
-          <tr>
-            <td width=100>
+            <td width="100">
               <b>{{ LANG::FormVoucherCodeTitle }}:</b>
             </td>
-            <td>
-              <input type="text" name="voucher" value="{{ voucher }}">
+            <td width="200">
+              <input type="text" size="40" name="voucher" value="{{ voucher }}">
             </td>
             <td>
               {{ LANG::FormVoucherCodeHelp }}
             </td>
           </tr>
           <tr>
-            <td>
+            <td width="100">
               <b>{{ LANG::FormEmailAddressTitle }}:</b>
             </td>
-            <td>
-              <input type="text" name="email" value="{{ email }}">
+            <td width="200">
+              <input type="text" size="40" name="email" value="{{ email }}">
             </td>
             <td>
               {{ LANG::FormEmailAddressHelp }}
@@ -50,7 +44,7 @@
           </tr>
           <tr>
             <td colspan=3>
-            
+              <br />
               <table>
                 <tr>
                   <td>
@@ -64,7 +58,7 @@
                   </td>
                 </tr>
               </table>
-              
+ 
             </td>
             <td></td>
           </tr>
