@@ -66,6 +66,7 @@
 		  <div class="ocDsc">Use Server Name Indication (SNI)</div>
 		  <div class="ocInput">
 			<select name="sni" id="sni">
+			  <option value="">{{ LANG::Default }}</option>
 			  <option value="0">Off</option>
 			  <option value="1">On</option>
 			</select>
