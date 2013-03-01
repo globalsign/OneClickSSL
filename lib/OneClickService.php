@@ -429,8 +429,8 @@ class OneClickService
         $i = 1;
         while (!$continue) {
             // "-servername" for SNI support (Mutiple certificates on a single IP)
-            //$certHash = trim(shell_exec("/usr/bin/openssl s_client -servername ". $this->_certData->getDomain() ." -host ". $this->_certData->getDomain() ." -port ".  $this->_certData->getPort()." < /dev/null 2>/dev/null  | /usr/bin/openssl x509 -noout -modulus | /usr/bin/openssl sha1"));
-            $certHash = trim(shell_exec("/usr/bin/openssl s_client -host ". escapeshellarg($this->_certData->getDomain()) ." -port ".  $this->_certData->getPort()." < /dev/null 2>/dev/null  | /usr/bin/openssl x509 -noout -modulus | /usr/bin/openssl sha1"));
+            $certHash = trim(shell_exec("/usr/bin/openssl s_client -servername ". $this->_certData->getDomain() ." -host ". $this->_certData->getDomain() ." -port ".  $this->_certData->getPort()." < /dev/null 2>/dev/null  | /usr/bin/openssl x509 -noout -modulus | /usr/bin/openssl sha1"));
+            //$certHash = trim(shell_exec("/usr/bin/openssl s_client -host ". escapeshellarg($this->_certData->getDomain()) ." -port ".  $this->_certData->getPort()." < /dev/null 2>/dev/null  | /usr/bin/openssl x509 -noout -modulus | /usr/bin/openssl sha1"));
             $this->debug(1, "The webserver gives us a certificate with hash: ". $certHash);
             if ($certHash == $orgCertHash) {
                 $this->debug(1, "Webserver has installed the certificate");

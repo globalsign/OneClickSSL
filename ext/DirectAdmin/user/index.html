@@ -136,6 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($qstr['action'])) {
 		$usrSettings['remote_admin'] = 0;
 	}
 	
+	$usrSettings['sni'] = $_POST['sni'];
 	$usrSettings['auto_ip'] = $_POST['auto_ip'];
 	$usrSettings['debug_level'] = $_POST['debug_level'];
 	
@@ -180,6 +181,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'
 		$replace['{{ auto_ip }}'] = $usrSettings['auto_ip'];
 	} else {
 		$replace['{{ auto_ip }}'] = '';
+	}
+	if (ctype_digit($usrSettings['sni'])) {
+		$replace['{{ sni }}'] = $usrSettings['sni'];
+	} else {
+		$replace['{{ sni }}'] = '';
 	}
 	if (ctype_digit($usrSettings['debug_level'])) {
 		$replace['{{ debug_level }}'] = $usrSettings['debug_level'];

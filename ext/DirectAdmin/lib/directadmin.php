@@ -199,7 +199,15 @@ class DAOneClick implements OneClickSSLPlugin
      */
     public function checkIp() {
         global $usrSettings, $settings;
-
+        
+        // Skip if we want to use Server Name Indication
+    	if ((ctype_digit($usrSettings['sni']) && $usrSettings['sni'] > 0)
+    		|| (ctype_digit($settings['sni']) && $settings['sni'] > 0)
+    	) {
+    		$this->debug(1, "Using Server Name Indication (SNI), skipping IP checks.");
+            return true;
+        }
+         
         // You need version 1.40.4+ to have support this
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, DASERVER .'/CMD_API_LICENSE');

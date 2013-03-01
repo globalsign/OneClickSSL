@@ -37,6 +37,21 @@
 		</div>
 	</div>
 
+	<!-- Use Server Name Indication (SNI) -->
+	<h2>Use Server Name Indication (SNI)</h2>
+	<p class='OCdescription'>Ignore IP settings and install multiple SSL certificates on a single IP address. Use in combination with GlobalSign CloudSSL for full compatibility.</p>
+	<div class="ocHighlight">
+		<div class="ocSetting">
+		  <div class="ocDsc">Use Server Name Indication (SNI)</div>
+		  <div class="ocInput">
+			<select name="sni" id="sni">
+			  <option value="0">Off</option>
+			  <option value="1">On</option>
+			</select>
+		  </div>
+		</div>
+	</div>
+
 	<!-- RAA Login Key -->
 	<h2>Remote Adminsitration Agent (RAA) Login Key</h2>
 	<p class='OCdescription'>Create a Login Key <a href="/CMD_LOGIN_KEYS">here</a> if you want to use the RAA. The login key will be transferred to GlobalSign if you request a certificate with RAA enabled. You should limit the key usage to allow the CMD_PLUGINS command, a usage of 0 (unlimited) and no expiry.</p>
@@ -92,6 +107,7 @@
 		$(document).ready(function(){
 			$('#debug_level').val('{{ debug_level }}');
 			$('#auto_ip').val('{{ auto_ip }}');
+			$('#sni').val('{{ sni }}');
 			$('#environment').val('{{ environment }}');
 		});
 	</script>
