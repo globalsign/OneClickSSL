@@ -96,6 +96,7 @@ class OneClickService
     public function checkVoucher($revoke = false)
     {
         $this->debug(1, "Contacting GlobalSign to verify domain and voucher details");
+		$this->updateStatus();
         $arguments = array(
             'Request' => array(
                 'Voucher'       => $this->_certData->getVoucher(),
@@ -164,7 +165,8 @@ class OneClickService
     public function testOrder($orderId, $csr)
     {
         $this->debug(1, "Sending the CSR to GlobalSign for a temporary certificate (". $orderId .")");
-
+		$this->updateStatus();
+		
         $arguments = array();
         $arguments['Request']['OrderID'] = $orderId;
         $arguments['Request']['CSR'] = $csr;
@@ -204,7 +206,8 @@ class OneClickService
     public function realOrder($orderId, $csr)
     {
         $this->debug(1, "Sending the CSR to GlobalSign for the real certificate (". $orderId .")");
-
+		$this->updateStatus();
+		
         $arguments = array();
         $arguments['Request']['OrderID'] = $orderId;
         $arguments['Request']['CSR'] = $csr;
@@ -236,7 +239,8 @@ class OneClickService
     public function revokeCert($orderId)
     {
         $this->debug(1, "Requesting a revocation for ".  $orderId);
-
+		$this->updateStatus();
+		
         $arguments = array();
         $arguments['Request']['OrderID'] = $orderId;
 
@@ -429,8 +433,16 @@ class OneClickService
         $i = 1;
         while (!$continue) {
             // "-servername" for SNI support (Mutiple certificates on a single IP)
-            $certHash = trim(shell_exec("/usr/bin/openssl s_client -servername ". $this->_certData->getDomain() ." -host ". $this->_certData->getDomain() ." -port ".  $this->_certData->getPort()." < /dev/null 2>/dev/null  | /usr/bin/openssl x509 -noout -modulus | /usr/bin/openssl sha1"));
-            //$certHash = trim(shell_exec("/usr/bin/openssl s_client -host ". escapeshellarg($this->_certData->getDomain()) ." -port ".  $this->_certData->getPort()." < /dev/null 2>/dev/null  | /usr/bin/openssl x509 -noout -modulus | /usr/bin/openssl sha1"));
+			$sni = false;
+			if (defined('OPENSSL_TLSEXT_SERVER_NAME') && OPENSSL_TLSEXT_SERVER_NAME) {
+				$sni = true;
+			}
+			
+			if ($sni) {
+				$certHash = trim(shell_exec("/usr/bin/openssl s_client -servername ". $this->_certData->getDomain() ." -host ". $this->_certData->getDomain() ." -port ".  $this->_certData->getPort()." < /dev/null 2>/dev/null  | /usr/bin/openssl x509 -noout -modulus | /usr/bin/openssl sha1"));
+			} else {
+				$certHash = trim(shell_exec("/usr/bin/openssl s_client -host ". escapeshellarg($this->_certData->getDomain()) ." -port ".  $this->_certData->getPort()." < /dev/null 2>/dev/null  | /usr/bin/openssl x509 -noout -modulus | /usr/bin/openssl sha1"));
+			}
             $this->debug(1, "The webserver gives us a certificate with hash: ". $certHash);
             if ($certHash == $orgCertHash) {
                 $this->debug(1, "Webserver has installed the certificate");
