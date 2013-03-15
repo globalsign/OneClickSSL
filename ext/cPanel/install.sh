@@ -13,7 +13,7 @@ cp -vRf ./base /usr/local/cpanel/
 cp -vRf ./3rdparty /usr/local/cpanel/
 cp -vRf ./whostmgr /usr/local/cpanel/
 
-chmod v +x /usr/local/cpanel/whostmgr/docroot/cgi/addon_OneClickSSL.cgi
+chmod -v +x /usr/local/cpanel/whostmgr/docroot/cgi/addon_OneClickSSL.cgi
 chmod -vR 777 /usr/local/cpanel/3rdparty/OneClickSSL/tmp
 chmod -vR 777 /usr/local/cpanel/3rdparty/OneClickSSL/etc
 
