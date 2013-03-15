@@ -508,59 +508,59 @@ Descripción:
     <value>La recepción del certificado intermedio fue la siguiente: </value>
   </data>
   
-  <!-- DA Plugin -->
+  <!-- DA / cPanel Plugin -->
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Guardar</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Cancelar</value>
   </data>
   <data name="Default" xml:space="preserve">
-    <value>Default</value>
+    <value>Por Defecto</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>Username</value>
+    <value>Nombre de Usuario</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Password</value>
+    <value>Contraseña</value>
   </data>
   <data name="RevokeCert" xml:space="preserve">
-    <value>Requesting certificate revocation</value>
+    <value>Solicitando revocación de Certificado</value>
   </data>
   <data name="CheckIp" xml:space="preserve">
-    <value>Checking if this webiste runs on a dedicated/unique ip address</value>
+    <value>Verificando si este sitio web se ejecuta en una direccion IP decidada/única</value>
   </data>
   <data name="CheckVoucher" xml:space="preserve">
-    <value>Contacting GlobalSign to verify domain and voucher details</value>
+    <value>Contactando con GlobalSign para verificar los detalles de dominio y de cupones</value>
   </data>
   <data name="DoBackup" xml:space="preserve">
-    <value>Making a backup of the current certificate</value>
+    <value>Creando una copia de seguridad del Certificado actual</value>
   </data>
   <data name="ProcessingTitle" xml:space="preserve">
-    <value>GlobalSign OneClickSSL Installer</value>
+    <value>Instalador de GlobalSign OneClickSSL</value>
   </data>
   <data name="ProcessingDescription" xml:space="preserve">
-    <value>OneClickSSL secure site activation in progress, do not close or navigate away from this page until completed</value>
+    <value>Activación OneClickSSL sitio seguro en curso, no cierre o navegue fuera de esta página hasta completar</value>
   </data>
   <data name="OrderError" xml:space="preserve">
-    <value>Error placing order</value>
+    <value>Error en el pedido de la orden</value>
   </data>
   <data name="StatusError" xml:space="preserve">
-    <value>Error while retrieving order status</value>
+    <value>Error al recuperar el estado del pedido</value>
   </data>
   <data name="TestWindow" xml:space="preserve">
-    <value>Click to open a test window to check your secure site</value>
+    <value>Haga clic aquí para abrir una ventana de pruebas para comprobar su sitio seguro</value>
   </data>
   <data name="ShowDebug" xml:space="preserve">
-    <value>Show debug information</value>
+    <value>Mostrar información de depuración</value>
   </data>
   <data name="FormObtainingVouchersTitle" xml:space="preserve">
-    <value>Obtaining OneClickSSL Vouchers</value>
+    <value>Obteniendo cupones OneClickSSL</value>
   </data>
   <data name="FormObtainingVouchersDescription" xml:space="preserve">
-    <value>Customize the experience for domain owners. You have the ability to control the experience of domain owners and the methods by which they obtain OneClickSSL vouchers. Please change the URL below to a landing page of your own if you are a GlobalSign reseller. The URL is called when domain owners click on the 'No Voucher, Get one here' image from within their plugin.</value>
+    <value>Personalize la experiencia de los propietarios de dominio. Usted tiene la posibilidad de controlar la experiencia de los propietarios de dominio y los métodos por los cuales obtienen cupones OneCLickSSL. Por favor, cambie la siguiente URL a una página de destino de su cuenta si usted es un revendedor de GlobalSign. La URL se llama cuando los propietarios de dominio hacen clic en la imagen 'No Voucher, Get one here', dentro de su plugin.</value>
   </data>
   <data name="FormLandingPage" xml:space="preserve">
-    <value>Landing page URL</value>
+    <value>URL de la pagina de aterrizaje</value>
   </data>
 </root>
