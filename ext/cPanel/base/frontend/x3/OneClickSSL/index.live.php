@@ -89,9 +89,19 @@ $replace['{{ voucher_url }}'] = htmlentities(strip_tags($settings['voucher_url']
 // get domain
 $res = $cpanel->api2('DomainLookup', 'getbasedomains');
 if ($res['cpanelresult']['event']['result'] > 0) {
-	$domain = $res['cpanelresult']['data'][0]['domain'];
+	foreach ($res['cpanelresult']['data'] as $data) {
+		if (htmlentities(strip_tags(trim($_POST['domain']))) === $data['domain']) {
+			$domainSelected = " selected";
+		} else {
+			$domainSelected = "";
+		}
+	
+		$domain = $data['domain'];
+		$domainOptions = '<option value="'. $data['domain'] .'"'. $domainSelected .'>'. $data['domain'] .'</option>'. PHP_EOL;
+	}
 }
 
+$replace['{{ domainOptions }}'] = $domainOptions;
 $replace['{{ domain }}'] = htmlentities(strip_tags(trim($_POST['domain'])));
 $replace['{{ voucher }}'] = htmlentities(strip_tags(trim($_POST['voucher'])));
 $replace['{{ email }}'] = htmlentities(strip_tags(trim($_POST['email'])));
@@ -173,7 +183,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'
 	$tplFile = 'user_process.tpl';
 
 } elseif ($_GET['action'] == 'revoke') {
-    $replace['{{ domain }}'] = str_replace('www.', '', $domain);
+	$replace['{{ domainOptions }}'] = $domainOptions;
     $tplFile = 'user_revoke.tpl';
 
 /**
