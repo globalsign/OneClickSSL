@@ -107,6 +107,7 @@ class DAOneClick implements OneClickSSLPlugin
 		} else {
 			$this->debug(1, "Installation of certificate and key material failed");
 			$this->debug(2, strip_tags($res['cpanelresult']['data'][0]['output']));
+			$this->debug(3, print_r($res, true));
 			$this->updateStatus();
 			return false;
 		}
@@ -147,7 +148,7 @@ class DAOneClick implements OneClickSSLPlugin
 		// API1: http://docs.cpanel.net/twiki/bin/view/ApiDocs/Api1/ApiSSL#SSL::showcrt
 		// API2: http://docs.cpanel.net/twiki/bin/view/ApiDocs/Api2/ApiSSL#SSL::fetchinfo
 		$params = array();
-		$params['cpanel.oneclickssldemo.com'] = false;
+		$params[$this->_domain] = false;
 		$res = $cpanel->api1('SSL', 'showkey', $params);
 		if ($res['cpanelresult']['event']['result']) {
 			$this->debug(1, "Backup of private key completed");
@@ -155,6 +156,7 @@ class DAOneClick implements OneClickSSLPlugin
 			
 		} else {
 			$this->debug(1, "Backup of private key failed");
+			$this->debug(3, strip_tags(print_r($res, true)));
 			return false;
 		}
 		
@@ -166,12 +168,13 @@ class DAOneClick implements OneClickSSLPlugin
 			
 		} else {
 			$this->debug(1, "Backup of certificate failed");
+			$this->debug(3, strip_tags(print_r($res, true)));
 			return false;
 		}
 		
 		// backup cabundle
 		$params = array();
-		$params['cpanel.oneclickssldemo.com'] = $this->backup['crt'];
+		$params[$this->_domain] = $this->backup['crt'];
 		$res = $cpanel->api1('SSL', 'getcabundle', $params);
 		if ($res['cpanelresult']['event']['result']) {
 			$this->debug(1, "Backup of intermediate certificate(s) completed");
@@ -181,6 +184,7 @@ class DAOneClick implements OneClickSSLPlugin
 			
 		} else {
 			$this->debug(1, "Backup of intermediate certificate(s) failed");
+			$this->debug(3, strip_tags(print_r($res, true)));
 			return false;
 		}
 		
