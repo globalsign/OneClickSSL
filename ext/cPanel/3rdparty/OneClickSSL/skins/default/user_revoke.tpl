@@ -10,7 +10,11 @@
 	<div class="ocHighlight">
 		<div class="ocSetting">
 		  <div class="ocDsc">{{ LANG::FormDomainNameTitle }}</div>
-		  <div class="ocInput">{{ domain }}</div>
+		  <div class="ocInput">
+             <select name="domain">
+				{{ domainOptions }}
+              </select>
+		  </div>
 		</div>
 		<div class="ocSetting">
 		  <div class="ocDsc">{{ LANG::FormEmailAddressTitle }}</div>
@@ -22,7 +26,6 @@
 		</div>
 	</div>
 	
-	<input type="hidden" value="{{ domain }}" name="domain">
 	<input type="hidden" value="1" name="revoke">
 	<input type="submit" value="{{ LANG::FormProcessRevokeButton }}">
 	<img src="images/exclamation.png" alt="">
