@@ -367,6 +367,11 @@ class OneClickSSL
         if (method_exists($this->_plugin, 'backup')) {
             if ($this->_plugin->backup()) {
                 $this->_hasBackup = true;
+            } else {
+                throw new RunTimeException(
+                    'Backup failed',
+                    $this->service()->getTestResponseCode()
+                );
             }
         }
 
