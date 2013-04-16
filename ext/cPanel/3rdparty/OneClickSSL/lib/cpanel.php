@@ -46,7 +46,7 @@
 $cpanel = &new CPANEL();
 global $cpanel;
 
-define("PLATFORMID", "863251316500001");
+define("PLATFORMID", "642889112500002");
 define("KEYALGORITHM", "RSA");
 
 require 'OneClickSSL.php';
