@@ -316,15 +316,15 @@ class ApacheOneClick implements OneClickSSLPlugin
      */     
     public function backup()
     {
- 		if (is_file(CERTDIR . $this->_domain .'.key')) {
-			if (@copy(CERTDIR . $this->_domain .'.*', CERTDIR .'backup/')) {
-				return true;
-         	} else {
-				return false;
-			}
-		} else {
-			return true;
-		}
+        if (is_file(CERTDIR . $this->_domain .'.key')) {
+            if (@copy(CERTDIR . $this->_domain .'.*', CERTDIR .'backup/')) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return true;
+        }
     }
 	
     /**
