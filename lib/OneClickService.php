@@ -479,13 +479,13 @@ class OneClickService
             return $this->doCallSoap($function, $arguments);
 
         // No Soap, test for Curl
-        } elseif (function_exists('curl_init')) {
+        } elseif (function_exists('curl_init') && function_exists('simplexml_load_string')) {
             $this->debug(2, "SoapClient not installed, using Curl for communication");
             return $this->doCallCurl($function, $arguments);
 
         // Nothing availible
         } else {
-            $this->debug(1, "Unable to start communication, no SoapClient or Curl availible");
+            $this->debug(1, "Unable to start communication, no SoapClient or Curl with SimpleXML availible");
             return false;
         }
     }
