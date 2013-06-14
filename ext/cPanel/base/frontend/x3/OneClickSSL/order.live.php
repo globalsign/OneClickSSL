@@ -67,15 +67,18 @@ if (file_exists($usrConfig)) {
 	$usrSettings = array();
 }
 
-/*
+/**
  * cPanel library
+ 
  */
 include("/usr/local/cpanel/php/cpanel.php");
+
 
 /**
  * Include the cPanel specific library
  */
 require('../../../../3rdparty/OneClickSSL/lib/cpanel.php');
+
 
 /**
  * Remote Administration Agent(RAA) or Manual request
