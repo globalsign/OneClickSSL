@@ -50,7 +50,7 @@ class OneClickService
 
     const SERVER_TEST  = 'https://testsystem.globalsign.com/vc/ws/OneClickOrder?wsdl';
 
-    const SERVER_STAG  = 'https://gas-eval1.globalsign.com:10001/vc/ws/OneClickOrder?wsdl';
+    const SERVER_STAG  = 'https://staging.globalsign.com/vc/ws/OneClickOrder?wsdl';
 
     protected $_certData;
 
@@ -501,7 +501,7 @@ class OneClickService
         try {
             $client = new SoapClient($this->_server, array('trace' => true,
                                                            'exceptions' => true,
-                                                           'connection_timeout' => 30));
+                                                           'connection_timeout' => 180));
             $response = $client->__soapCall($function, array($function => $arguments));
 
             // Simple error information
@@ -582,7 +582,7 @@ SOAP;
         curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 180);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_HEADER, false);
