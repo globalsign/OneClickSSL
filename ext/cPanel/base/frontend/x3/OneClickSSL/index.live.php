@@ -86,7 +86,8 @@ $cpanel->api1("setvar","",array("dprefix=../"));
 $replace = array();
 $replace['{{ voucher_url }}'] = htmlentities(strip_tags($settings['voucher_url']));
 
-// get domain
+// get domains
+$domainOptions = '';
 $res = $cpanel->api2('DomainLookup', 'getbasedomains');
 if ($res['cpanelresult']['event']['result'] > 0) {
 	foreach ($res['cpanelresult']['data'] as $data) {
@@ -97,7 +98,7 @@ if ($res['cpanelresult']['event']['result'] > 0) {
 		}
 	
 		$domain = $data['domain'];
-		$domainOptions = '<option value="'. $data['domain'] .'"'. $domainSelected .'>'. $data['domain'] .'</option>'. PHP_EOL;
+		$domainOptions .= '<option value="'. $data['domain'] .'"'. $domainSelected .'>'. $data['domain'] .'</option>'. PHP_EOL;
 	}
 }
 
