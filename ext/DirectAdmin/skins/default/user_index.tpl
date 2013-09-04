@@ -17,7 +17,10 @@
               <b>{{ LANG::FormDomainNameTitle }}:</b>
             </td>
             <td colspan=2>
-              <input type="hidden" name="domain" value="{{ domain }}">{{ domain }}
+              <select name="domain">
+                <option value="{{ domain }}">{{ domain }}</option>
+                <option value="www.{{ domain }}">www.{{ domain }}</option>
+              </select>
             </td>
           </tr>
           <tr>
