@@ -48,9 +48,9 @@ class OneClickService
 {
     const SERVER_PROD  = 'https://system.globalsign.com/vc/ws/OneClickOrder?wsdl';
 
-    const SERVER_TEST  = 'https://testsystem.globalsign.com/vc/ws/OneClickOrder?wsdl';
+    const SERVER_TEST  = 'https://test-gcc.globalsign.com/vc/ws/OneClickOrder?wsdl';
 
-    const SERVER_STAG  = 'https://staging.globalsign.com/vc/ws/OneClickOrder?wsdl';
+    const SERVER_STAG  = 'https://stg-gcc.globalsign.com/vc/ws/OneClickOrder?wsdl';
 
     protected $_certData;
 
